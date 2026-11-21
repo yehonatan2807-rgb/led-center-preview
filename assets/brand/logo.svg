@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 60">
+  <defs><filter id="g" x="-30%" y="-200%" width="160%" height="500%"><feGaussianBlur stdDeviation="3"/></filter></defs>
+  <rect x="236" y="22" width="56" height="16" rx="3" fill="#15171a"/>
+  <rect x="242" y="27" width="44" height="6" rx="2" fill="#ffd59a" filter="url(#g)" opacity=".8"/>
+  <rect x="242" y="27" width="44" height="6" rx="2" fill="#fff3dc"/>
+  <text x="222" y="31" text-anchor="end" font-family="Heebo, Arial, sans-serif" font-size="21" font-weight="600" letter-spacing="5" fill="#111417">LED CENTER</text>
+  <text x="222" y="51" text-anchor="end" font-family="Heebo, Arial, sans-serif" font-size="13" letter-spacing="2" fill="#5b636c">לד סנטר · ירושלים</text>
+</svg>

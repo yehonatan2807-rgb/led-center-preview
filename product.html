@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מוצר | לד סנטר</title>
+<meta name="description" content="פרטי מוצר, מחיר והזמנה בוואטסאפ מלד סנטר, תלפיות ירושלים.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#eef0f2">
+<meta property="og:type" content="product"><meta property="og:image" content="share.jpg"><meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+.pd{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,5vw,80px);padding:clamp(36px,4vw,56px) 0 clamp(80px,9vw,130px)}
+.gal__main{aspect-ratio:1;background:var(--tile);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.gal__main svg,.gal__main img{width:100%;height:100%;object-fit:cover}
+.gal__thumbs{display:flex;gap:10px;margin-top:10px}
+.gal__thumbs button{width:84px;height:84px;padding:0;border:1px solid var(--line);border-radius:var(--r);background:var(--tile);overflow:hidden;cursor:pointer}
+.gal__thumbs button[aria-pressed="true"]{border-color:var(--ink);outline:1px solid var(--ink)}
+.gal__thumbs svg,.gal__thumbs img{width:100%;height:100%;object-fit:cover}
+.gal__note{font-size:13px;color:var(--faint);margin-top:8px}
+.info h1{font-size:clamp(30px,3.2vw,46px);margin:10px 0 12px}
+.info .price{margin:22px 0 4px}
+.info .price b{font-size:36px}
+.buy{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.buy .qty{height:52px}
+.buy .qty button{height:50px;width:44px}
+.buy .btn{flex:1}
+.specs{margin-top:36px;border-top:1px solid var(--line)}
+.specs div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15.5px}
+.specs dt{color:var(--muted)}
+.specs dd{margin:0;font-weight:500;text-align:left}
+.tip{margin-top:26px;background:var(--panel);border-inline-start:3px solid var(--red);padding:16px 18px;font-size:15px;border-radius:var(--r)}
+.tip a{text-decoration:underline}
+@media (max-width:1023px){.pd{grid-template-columns:1fr}}
+</style>
+</head>
+<body class="no-js" data-page="shop">
+<main id="main" class="wrap">
+  <nav class="crumbs" aria-label="פירורי לחם" style="padding-top:28px"><a href="index.html">דף הבית</a><span>/</span><a href="shop.html">חנות</a><span>/</span><a id="crumb-cat" href="shop.html"></a></nav>
+  <div class="pd" id="pd"></div>
+  <section aria-labelledby="rel-h" style="padding-bottom:clamp(80px,9vw,140px)">
+    <div class="head"><div><p class="eyebrow">עוד מאותה קטגוריה</p><h2 id="rel-h" class="h-m" style="margin-top:12px">מוצרים קשורים</h2></div></div>
+    <div class="pgrid" id="rel"></div>
+  </section>
+</main>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/site.js"></script>
+<script>
+const id=new URLSearchParams(location.search).get('id');
+const p=findProduct(id)||PRODUCTS[0];
+document.title=p.name+' | לד סנטר';
+document.querySelector('meta[name=description]').content=p.name+': '+p.spec+'. '+(p.price!=null?'מחיר '+fmt(p.price)+' לפני מע״מ. ':'')+'הזמנה בוואטסאפ ואיסוף מתלפיות.';
+const c=document.getElementById('crumb-cat');c.textContent=CATS[p.cat].name;c.href='shop.html?cat='+p.cat;
+const specs=[['קטגוריה',CATS[p.cat].name]];
+if(p.w) specs.push(['הספק',p.w+' וואט']);
+if(p.cat==='profile') specs.push(['חומר','אלומיניום'],['כיסוי','פוליקרבונט, כקליפס']);
+if(p.use) specs.push(['מתאים ל',p.use.join(', ')]);
+specs.push(['מחיר',p.price!=null?fmt(p.price)+' לפני מע״מ ('+fmt(p.price*1.18)+' כולל)':'לפי דגם, נשלח הצעה'],['זמינות','איסוף מהחנות בתלפיות, בתיאום']);
+const tip=p.cat==='strip'?'כל פס צריך שנאי בהספק מתאים. <a href="calculator.html">המחשבון</a> יחשב בשבילך כמה וואט צריך.':p.cat==='profile'?'הפרופיל מגיע עם כיסוי פוליקרבונט. לפרופיל שקוע כדאי להוסיף <a href="product.html?id=clip-steel">קליפס נירוסטה</a>.':'לא בטוחים איזה דגם מתאים? <a href="contact.html">שאלו אותנו</a> ונחזור אליכם.';
+document.getElementById('pd').innerHTML=`
+  <div class="gal">
+    <div class="gal__main" id="main-img">${drawProduct(p)}</div>
+    <div class="gal__thumbs">
+      <button type="button" aria-pressed="true" data-v="draw" aria-label="שרטוט המוצר">${drawProduct(p)}</button>
+      <button type="button" aria-pressed="false" data-v="photo" aria-label="צילום המוצר"><img src="assets/img/products/${p.photo}.jpg" alt="" loading="lazy"></button>
+    </div>
+    <p class="gal__note">שרטוט להמחשה. בתמונה השנייה: צילום המוצר בחנות.</p>
+  </div>
+  <div class="info">
+    <p class="eyebrow">${CATS[p.cat].name}</p>
+    <h1>${p.name}</h1>
+    <p class="lead">${p.spec}.</p>
+    ${p.price!=null?`<div class="price"><b class="num">${fmt(p.price)}</b><small>לפני מע״מ · ${fmt(p.price*1.18)} כולל מע״מ</small></div>`:`<div class="price price--ask"><b style="font-size:24px">מחיר לפי דגם</b><small>נשלח הצעת מחיר בוואטסאפ</small></div>`}
+    <div class="buy">
+      <div class="qty"><button type="button" id="dec" aria-label="הפחתה">−</button><span id="q">1</span><button type="button" id="inc" aria-label="הוספה">+</button></div>
+      <button class="btn" type="button" id="buy">הוספה לסל</button>
+      <a class="btn btn--wa" href="https://wa.me/${SITE.WA}?text=${encodeURIComponent('שלום, יש לי שאלה על '+p.name)}" target="_blank" rel="noopener">${ICONS.wa}שאלה בוואטסאפ</a>
+    </div>
+    <dl class="specs">${specs.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+    <p class="tip">${tip}</p>
+  </div>`;
+let n=1;const qv=document.getElementById('q');
+document.getElementById('inc').onclick=()=>{qv.textContent=++n};
+document.getElementById('dec').onclick=()=>{if(n>1)qv.textContent=--n};
+document.getElementById('buy').onclick=()=>{addToCart(p.id,n);openCart()};
+document.querySelectorAll('.gal__thumbs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.gal__thumbs button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  document.getElementById('main-img').innerHTML=b.dataset.v==='photo'?`<img src="assets/img/products/${p.photo}.jpg" alt="צילום ${p.name} בחנות">`:drawProduct(p);
+});
+document.getElementById('rel').innerHTML=PRODUCTS.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,4).map(cardHTML).join('');
+observeReveal();
+const ld={"@context":"https://schema.org","@type":"Product","name":p.name,"description":p.spec,"brand":{"@type":"Brand","name":"LED Center"},"image":"https://www.ledcenter.co.il/assets/img/products/"+p.photo+".jpg"};
+if(p.price!=null) ld.offers={"@type":"Offer","priceCurrency":"ILS","price":(p.price*1.18).toFixed(2),"availability":"https://schema.org/InStoreOnly"};
+const s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(ld);document.head.appendChild(s);
+</script>
+</body>
+</html>

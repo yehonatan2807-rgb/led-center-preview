@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מחשבון שנאי לפסי לד | לד סנטר</title>
+<meta name="description" content="מחשבון חינמי: בוחרים פסי לד ואורך, ומקבלים את הספק השנאי המומלץ עם 20% מרווח ביטחון. לד סנטר, ירושלים.">
+<link rel="canonical" href="https://www.ledcenter.co.il/calculator.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#eef0f2">
+<meta property="og:type" content="website"><meta property="og:image" content="share.jpg"><meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css">
+<style>
+.calc{display:grid;grid-template-columns:1.3fr 1fr;gap:16px;padding-block:clamp(36px,4vw,56px) clamp(80px,9vw,130px);align-items:start}
+.box{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(24px,3vw,36px)}
+.box h2{font-size:22px;margin-bottom:20px}
+.crow{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) 44px;gap:12px;align-items:end;padding-bottom:16px;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.res{background:var(--dark);color:var(--on-dark);border-color:var(--dark)}
+.res dl{margin:0}
+.res div{display:flex;flex-wrap:wrap;column-gap:16px;justify-content:space-between;align-items:baseline;padding:14px 0;border-bottom:1px solid var(--line-dark)}
+.res dt{color:var(--on-dark-muted)}
+.res dd{margin:0;font-size:22px;font-weight:500;text-align:left}
+.res .big{font-size:30px}
+.res p{color:var(--on-dark-muted);font-size:15px;margin:18px 0 22px;min-height:3.4em}
+.res .btn{width:100%}
+.how{margin-top:16px}
+.how ol{margin:0;padding-inline-start:20px;color:var(--muted);display:grid;gap:8px;font-size:15.5px}
+@media (max-width:1023px){.calc{grid-template-columns:minmax(0,1fr)}.calc > div{display:contents}.how{order:3;margin-top:0}}
+@media (max-width:639px){.crow{grid-template-columns:minmax(0,1fr) minmax(0,1fr) 44px}}
+.crow .select,.crow .input{width:100%;min-width:0}
+</style>
+</head>
+<body class="no-js" data-page="calc">
+<main id="main">
+  <header class="pagehead"><div class="wrap">
+    <nav class="crumbs" aria-label="פירורי לחם"><a href="index.html">דף הבית</a><span>/</span><span>מחשבון שנאי</span></nav>
+    <h1>מחשבון שנאי</h1>
+    <p class="lead">מוסיפים את הפסים שמתחברים לאותו שנאי, עם האורך של כל אחד. המחשבון מחבר את ההספק, מוסיף 20% מרווח ביטחון וממליץ על שנאי Mean Well.</p>
+  </div></header>
+  <div class="wrap calc">
+    <div>
+      <div class="box">
+        <h2>הפסים שלך</h2>
+        <div id="c-rows"></div>
+        <button class="btn btn--line btn--sm" type="button" id="c-add">+ הוספת פס</button>
+      </div>
+      <div class="box how">
+        <h2>איך זה מחושב</h2>
+        <ol>
+          <li>הספק כל פס כפול האורך שלו במטרים.</li>
+          <li>מחברים את כל הפסים שעל אותו שנאי.</li>
+          <li>מוסיפים 20% מרווח, כדי שהשנאי לא יעבוד בעומס מלא ויחזיק שנים.</li>
+          <li>בוחרים את השנאי הקרוב כלפי מעלה: 35, 50, 75, 100, 150, 200 או 350 וואט.</li>
+        </ol>
+      </div>
+    </div>
+    <aside class="box res" aria-live="polite">
+      <h2>התוצאה</h2>
+      <dl>
+        <div><dt>הספק הפסים</dt><dd class="num" id="c-total">0W</dd></div>
+        <div><dt>עם 20% מרווח</dt><dd class="num" id="c-need">0W</dd></div>
+        <div><dt>שנאי מומלץ</dt><dd class="num big" id="c-driver">-</dd></div>
+      </dl>
+      <p id="c-note"></p>
+      <button class="btn btn--light" type="button" id="c-addcart">הוספת השנאי לסל</button>
+    </aside>
+  </div>
+</main>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/site.js"></script>
+<script src="assets/js/calc.js"></script>
+<script>initCalc();</script>
+</body>
+</html>
