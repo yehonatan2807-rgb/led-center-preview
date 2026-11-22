@@ -1,16 +1,15 @@
 <!doctype html>
 <html lang="he" dir="rtl">
-<head>
+<head><meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
-<meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>מוצר | לד סנטר</title>
 <meta name="description" content="פרטי מוצר, מחיר והזמנה בוואטסאפ מלד סנטר, תלפיות ירושלים.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#eef0f2">
-<meta property="og:type" content="product"><meta property="og:image" content="share.jpg"><meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="product"><meta property="og:image" content="https://yehonatan2807-rgb.github.io/led-center-preview/share.jpg"><meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/site.css?v=20261123">
 <style>
 .pd{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,5vw,80px);padding:clamp(36px,4vw,56px) 0 clamp(80px,9vw,130px)}
 .gal__main{aspect-ratio:1;background:var(--tile);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
@@ -45,19 +44,19 @@
     <div class="pgrid" id="rel"></div>
   </section>
 </main>
-<script src="assets/js/products.js"></script>
-<script src="assets/js/site.js"></script>
+<script src="assets/js/products.js?v=20261123"></script>
+<script src="assets/js/site.js?v=20261123"></script>
 <script>
 const id=new URLSearchParams(location.search).get('id');
 const p=findProduct(id)||PRODUCTS[0];
 document.title=p.name+' | לד סנטר';
-document.querySelector('meta[name=description]').content=p.name+': '+p.spec+'. '+(p.price!=null?'מחיר '+fmt(p.price)+' לפני מע״מ. ':'')+'הזמנה בוואטסאפ ואיסוף מתלפיות.';
+document.querySelector('meta[name=description]').content=p.name+': '+p.spec+'. '+(p.price!=null?'מחיר '+fmt(gross(p.price))+' כולל מע״מ. ':'')+'הזמנה בוואטסאפ ואיסוף מתלפיות.';
 const c=document.getElementById('crumb-cat');c.textContent=CATS[p.cat].name;c.href='shop.html?cat='+p.cat;
 const specs=[['קטגוריה',CATS[p.cat].name]];
 if(p.w) specs.push(['הספק',p.w+' וואט']);
 if(p.cat==='profile') specs.push(['חומר','אלומיניום'],['כיסוי','פוליקרבונט, כקליפס']);
 if(p.use) specs.push(['מתאים ל',p.use.join(', ')]);
-specs.push(['מחיר',p.price!=null?fmt(p.price)+' לפני מע״מ ('+fmt(p.price*1.18)+' כולל)':'לפי דגם, נשלח הצעה'],['זמינות','איסוף מהחנות בתלפיות, בתיאום']);
+specs.push(['מחיר',p.price!=null?fmt(gross(p.price))+' כולל מע״מ':'לפי דגם, נשלח הצעה'],['זמינות','איסוף מהחנות בתלפיות, בתיאום']);
 const tip=p.cat==='strip'?'כל פס צריך שנאי בהספק מתאים. <a href="calculator.html">המחשבון</a> יחשב בשבילך כמה וואט צריך.':p.cat==='profile'?'הפרופיל מגיע עם כיסוי פוליקרבונט. לפרופיל שקוע כדאי להוסיף <a href="product.html?id=clip-steel">קליפס נירוסטה</a>.':'לא בטוחים איזה דגם מתאים? <a href="contact.html">שאלו אותנו</a> ונחזור אליכם.';
 document.getElementById('pd').innerHTML=`
   <div class="gal">
@@ -72,7 +71,7 @@ document.getElementById('pd').innerHTML=`
     <p class="eyebrow">${CATS[p.cat].name}</p>
     <h1>${p.name}</h1>
     <p class="lead">${p.spec}.</p>
-    ${p.price!=null?`<div class="price"><b class="num">${fmt(p.price)}</b><small>לפני מע״מ · ${fmt(p.price*1.18)} כולל מע״מ</small></div>`:`<div class="price price--ask"><b style="font-size:24px">מחיר לפי דגם</b><small>נשלח הצעת מחיר בוואטסאפ</small></div>`}
+    ${p.price!=null?`<div class="price"><b class="num">${fmt(gross(p.price))}</b><small>כולל מע״מ</small></div>`:`<div class="price price--ask"><b style="font-size:24px">מחיר לפי דגם</b><small>נשלח הצעת מחיר בוואטסאפ</small></div>`}
     <div class="buy">
       <div class="qty"><button type="button" id="dec" aria-label="הפחתה">−</button><span id="q">1</span><button type="button" id="inc" aria-label="הוספה">+</button></div>
       <button class="btn" type="button" id="buy">הוספה לסל</button>
@@ -92,7 +91,7 @@ document.querySelectorAll('.gal__thumbs button').forEach(b=>b.onclick=()=>{
 document.getElementById('rel').innerHTML=PRODUCTS.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,4).map(cardHTML).join('');
 observeReveal();
 const ld={"@context":"https://schema.org","@type":"Product","name":p.name,"description":p.spec,"brand":{"@type":"Brand","name":"LED Center"},"image":"https://www.ledcenter.co.il/assets/img/products/"+p.photo+".jpg"};
-if(p.price!=null) ld.offers={"@type":"Offer","priceCurrency":"ILS","price":(p.price*1.18).toFixed(2),"availability":"https://schema.org/InStoreOnly"};
+if(p.price!=null) ld.offers={"@type":"Offer","priceCurrency":"ILS","price":gross(p.price).toFixed(2),"availability":"https://schema.org/InStoreOnly"};
 const s=document.createElement('script');s.type='application/ld+json';s.textContent=JSON.stringify(ld);document.head.appendChild(s);
 </script>
 </body>

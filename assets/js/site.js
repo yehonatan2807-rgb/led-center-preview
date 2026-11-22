@@ -52,15 +52,14 @@ document.body.insertAdjacentHTML('beforeend',`
     <div><h3>יצירת קשר</h3><ul><li><a href="tel:+972722500885">משרד 072-2500885</a></li><li><a href="tel:+972547543820">נייד 054-7543820</a></li><li><a href="https://wa.me/${WA}">וואטסאפ</a></li><li><a href="${MAPS}">רחוב רבקה 19, תלפיות<br>(בתוך ביג אמפוריו)</a></li></ul></div>
     <div><h3>שעות פתיחה</h3>${hoursDl}</div>
   </div>
-  <div class="foot__row"><span>© 2026 לד סנטר בע״מ · המחירים באתר לפני מע״מ · צילומי השראה: Unsplash</span><nav aria-label="משפטי"><a href="accessibility.html">הצהרת נגישות</a><a href="terms.html">תקנון ופרטיות</a></nav></div>
+  <div class="foot__row"><span>© 2026 לד סנטר בע״מ · המחירים באתר כוללים מע״מ · צילומי השראה: Unsplash</span><nav aria-label="משפטי"><a href="accessibility.html">הצהרת נגישות</a><a href="terms.html">תקנון ופרטיות</a></nav></div>
 </div></footer>
 <div class="scrim" data-cart-close></div>
 <aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="drawer-h">
   <div class="drawer__head"><h2 id="drawer-h">סל ההזמנה</h2><button class="icon-btn" type="button" data-cart-close aria-label="סגירת הסל">${ic.x}</button></div>
   <ul class="drawer__list" id="cart-lines"></ul>
   <div class="drawer__foot">
-    <div class="sum"><span>סה״כ לפני מע״מ</span><span class="num" id="cart-sub">0 ₪</span></div>
-    <div class="sum sum--t"><span>כולל מע״מ 18%</span><span class="num" id="cart-tot">0 ₪</span></div>
+    <div class="sum sum--t"><span>סה״כ כולל מע״מ</span><span class="num" id="cart-tot">0 ₪</span></div>
     <a class="btn btn--wa" id="cart-send" href="#" target="_blank" rel="noopener">${ic.wa}שליחת ההזמנה בוואטסאפ</a>
     <p>ההזמנה נשלחת ליהודה לאישור מלאי ומחיר. התשלום והאיסוף בחנות או במשלוח בתיאום.</p>
   </div>
@@ -110,12 +109,12 @@ function renderCart(){
   document.querySelectorAll('.badge').forEach(b=>{b.textContent=count;b.dataset.n=count});
   let sub=0,ask=false;
   const list=document.getElementById('cart-lines');
-  list.innerHTML=ids.length?ids.map(id=>{const p=P(id),q=cart[id];if(p.price!=null)sub+=p.price*q;else ask=true;
-    return `<li class="dl"><div class="dl__img">${drawProduct(p)}</div><div><b>${p.name}</b><small>${p.price!=null?fmt(p.price)+' ליחידה':'מחיר לפי דגם'}</small></div><div class="qty"><button type="button" data-dec="${id}" aria-label="הפחתה">−</button><span>${q}</span><button type="button" data-inc="${id}" aria-label="הוספה">+</button></div></li>`}).join('')
+  list.innerHTML=ids.length?ids.map(id=>{const p=P(id),q=cart[id];if(p.price!=null)sub+=gross(p.price)*q;else ask=true;
+    return `<li class="dl"><div class="dl__img">${drawProduct(p)}</div><div><b>${p.name}</b><small>${p.price!=null?fmt(gross(p.price))+' ליחידה':'מחיר לפי דגם'}</small></div><div class="qty"><button type="button" data-dec="${id}" aria-label="הפחתה">−</button><span>${q}</span><button type="button" data-inc="${id}" aria-label="הוספה">+</button></div></li>`}).join('')
     :'<li class="drawer__empty">הסל ריק.<br><a class="link" href="shop.html">לחנות</a></li>';
-  document.getElementById('cart-sub').textContent=fmt(sub)+(ask?' +':'');
-  document.getElementById('cart-tot').textContent=fmt(sub*(1+VAT))+(ask?' +':'');
-  const msg='שלום לד סנטר, אשמח להזמין:\n'+ids.map(id=>{const p=P(id);return `• ${p.name} × ${cart[id]}`+(p.price!=null?` (${fmt(p.price*cart[id])})`:'')}).join('\n')+`\nסה"כ לפני מע"מ: ${fmt(sub)}${ask?' + פריטים לפי הצעה':''}`;
+  sub=Math.round(sub*100)/100;
+  document.getElementById('cart-tot').textContent=fmt(sub)+(ask?' +':'');
+  const msg='שלום לד סנטר, אשמח להזמין:\n'+ids.map(id=>{const p=P(id);return `• ${p.name} × ${cart[id]}`+(p.price!=null?` (${fmt(Math.round(gross(p.price)*cart[id]*100)/100)})`:'')}).join('\n')+`\nסה"כ כולל מע"מ: ${fmt(sub)}${ask?' + פריטים לפי הצעה':''}`;
   document.getElementById('cart-send').href=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
 }
 const calm=()=>matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('a11y-still');
@@ -155,7 +154,7 @@ observeReveal();
 window.cardHTML=p=>`<article class="pcard rv" data-cat="${p.cat}">
   <a class="pcard__img" href="product.html?id=${p.id}" aria-label="${p.name}">${drawProduct(p)}${p.tag?`<span class="pcard__tag">${p.tag}</span>`:''}</a>
   <div class="pcard__body"><span class="pcard__cat">${CATS[p.cat].name}</span><a class="pcard__name" href="product.html?id=${p.id}">${p.name}</a><p class="pcard__spec">${p.spec}</p>
-  <div class="pcard__row">${p.price!=null?`<span class="price"><b class="num">${fmt(p.price)}</b><small>לפני מע״מ</small></span>`:`<span class="price price--ask"><b>מחיר לפי דגם</b><small>נשלח הצעה</small></span>`}
+  <div class="pcard__row">${p.price!=null?`<span class="price"><b class="num">${fmt(gross(p.price))}</b><small>כולל מע״מ</small></span>`:`<span class="price price--ask"><b>מחיר לפי דגם</b><small>נשלח הצעה</small></span>`}
   <button class="add" type="button" data-add="${p.id}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>הוספה לסל</button></div></div></article>`;
 })();
 

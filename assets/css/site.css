@@ -7,7 +7,7 @@
   --ink:#111417;
   --ink-2:#2b3036;
   --muted:#4f565e;
-  --faint:#8b939b;
+  --faint:#616971;
   --line:#d2d0cc;
   --line-2:#bfbdb8;
   --dark:#0d0e10; --dark-2:#17181b; --dark-3:#222327;
@@ -57,7 +57,7 @@ h1,h2,h3,h4{margin:0;font-weight:500;line-height:1.1;letter-spacing:-.02em}
 .btn--light:hover{background:#fff;border-color:#fff}
 .btn--ghost-l{background:transparent;color:var(--on-dark);border-color:rgba(233,236,239,.4)}
 .btn--ghost-l:hover{background:rgba(233,236,239,.1);border-color:var(--on-dark)}
-.btn--wa{background:#178a4f;border-color:#178a4f;color:#fff}
+.btn--wa{background:#16844b;border-color:#16844b;color:#fff}
 .btn--wa:hover{background:#1c9c5a;border-color:#1c9c5a}
 .btn--sm{height:42px;padding:0 16px;font-size:14.5px}
 .btn svg{width:18px;height:18px;flex:none}
@@ -212,7 +212,7 @@ h1,h2,h3,h4{margin:0;font-weight:500;line-height:1.1;letter-spacing:-.02em}
 .fab{position:fixed;bottom:20px;z-index:80;width:54px;height:54px;border-radius:50%;display:grid;place-items:center;box-shadow:0 10px 26px -8px rgba(0,0,0,.35);transition:transform .25s var(--ease);cursor:pointer;border:0}
 @media (hover:hover) and (pointer:fine){.fab:hover{transform:scale(1.06)}}
 .fab:active{transform:scale(.94)}
-.fab--wa{left:20px;background:#178a4f;color:#fff}
+.fab--wa{left:20px;background:#16844b;color:#fff}
 .fab--wa svg{width:27px;height:27px;fill:currentColor}
 .fab--a11y{right:20px;background:var(--ink);color:var(--bg)}
 .fab--a11y svg{width:26px;height:26px}
@@ -286,3 +286,6 @@ html.a11y-font body{font-family:Arial,sans-serif}
 
 /* very narrow phones: keep the header inside 320px */
 @media (max-width:360px){.hdr__bar{gap:12px}.logo{gap:8px}.logo__mark{width:36px}.logo__en{letter-spacing:.14em;font-size:14.5px}}
+
+/* phones: the page end stays clear of the floating buttons */
+@media (max-width:760px){.foot{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}}

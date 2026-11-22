@@ -114,11 +114,14 @@ window.findProduct=function(id){
   if(m){const b=PRODUCTS.find(x=>x.id==='driver');return Object.assign({},b,{id,name:'שנאי Mean Well '+m[1]+'W',spec:'הספק '+m[1]+' וואט'})}
 };
 
+/* consumer price: Israeli law requires showing the total including VAT */
+window.gross=n=>Math.round(n*118)/100;
+
 /* real Google reviews (5.0 from 7 reviews) */
 window.REVIEWS=[
-  {n:'שני פ.',  t:'שירות אדיב, מקצועי ומסור. מצאנו בחנות שנאי למנורה, שלא היה בשום חנות חשמל אחרת. מומלץ בחום.', w:'לפני 6 חודשים'},
-  {n:'אורלי א.',t:'שירות מקצועי ביותר. צוות יסודי ומקצועי, שנתן לנו הרבה טיפים חשובים. ממליצים בחום.', w:'לפני 7 חודשים'},
-  {n:'אדגר א.', t:'חנות מושלמת לתאורת לד, עם סדנה בתוך החנות שנותנת פתרונות לבעיות בתאורת לד. שירות מהיר ואדיב.', w:'לפני 7 שנים'}
+  {n:'שני פ.',  t:'שירות אדיב, מקצועי ומסור. מצאנו בחנות שנאי למנורה, שלא היה בשום חנות חשמל אחרת. מומלץ בחום.'},
+  {n:'אורלי א.',t:'שירות מקצועי ביותר. צוות יסודי ומקצועי, שנתן לנו הרבה טיפים חשובים. ממליצים בחום.'},
+  {n:'אדגר א.', t:'חנות מושלמת לתאורת לד, עם סדנה בתוך החנות שנותנת פתרונות לבעיות בתאורת לד. שירות מהיר ואדיב.'}
 ];
 window.STARS='<span class="stars" aria-label="5 כוכבים">'+'<svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.6 6 .7-4.5 4.1 1.2 6L10 15l-5.3 2.9 1.2-6L1.4 7.8l6-.7z"/></svg>'.repeat(5)+'</span>';
-window.reviewHTML=r=>`<figure class="review rv">${STARS}<p>${r.t}</p><footer><span>${r.n}</span><span>${r.w} · Google</span></footer></figure>`;
+window.reviewHTML=r=>`<figure class="review rv">${STARS}<p>${r.t}</p><footer><span>${r.n}</span><span>ביקורת בגוגל</span></footer></figure>`;
