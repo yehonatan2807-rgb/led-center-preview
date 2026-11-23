@@ -1,6 +1,6 @@
 /* Driver calculator: strip watts per metre x length, plus 20% headroom, to the next Mean Well size. */
 (function(){
-  const SIZES=[35,50,75,100,150,200,350];
+  const SIZES=window.DRIVER_SIZES||[35,50,75,100,150,200,350];
   window.driverFor=function(totalW){
     const need=totalW*1.2;
     if(!totalW) return null;
@@ -42,6 +42,8 @@
       document.getElementById('c-need').textContent=fmtW(total*1.2);
       document.getElementById('c-driver').textContent=d?(d.count>1?d.count+' × ':'')+'Mean Well '+d.size+'W':'-';
       document.getElementById('c-note').textContent=!d?'הזינו אורך כדי לקבל המלצה.':d.count>1?'ההספק גבוה משנאי אחד. מחלקים את הפסים לכמה מעגלים, שנאי לכל מעגל.':'שנאי אחד מספיק לכל הפסים.';
+      /* screen readers hear the recommendation when it changes, not the whole box on every keystroke */
+      const say=d?'שנאי מומלץ: '+(d.count>1?d.count+' שנאים של ':'')+'Mean Well '+d.size+' וואט':'';const live=document.getElementById('c-live');if(live&&live.textContent!==say)live.textContent=say;
       const btn=document.getElementById('c-addcart');
       btn.disabled=!d;btn.dataset.size=d?d.size:'';btn.dataset.count=d?d.count:'';btn.dataset.parts=JSON.stringify(parts.map(x=>[x.p.id,x.m]));
     }

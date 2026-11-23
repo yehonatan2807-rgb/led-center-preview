@@ -26,7 +26,7 @@ const logo=`<span class="logo__mark" aria-hidden="true"><i></i></span>`;
 document.body.insertAdjacentHTML('afterbegin',`
 <a class="skip" href="#main">דלגו לתוכן</a>
 <header class="hdr"><div class="wrap hdr__bar">
-  <a class="logo" href="index.html" aria-label="לד סנטר, לדף הבית">${logo}<span class="logo__t"><span class="logo__en">LED CENTER</span><span class="logo__he">לד סנטר · ירושלים</span></span></a>
+  <a class="logo" href="index.html">${logo}<span class="logo__t"><span class="logo__en">LED CENTER</span><span class="logo__he">לד סנטר · ירושלים</span></span><span class="sr">, לדף הבית</span></a>
   <nav class="nav" aria-label="ראשי">${navHtml}</nav>
   <div class="hdr__act">
     <a class="hdr__tel" href="tel:+972722500885">072-2500885</a>
@@ -34,7 +34,7 @@ document.body.insertAdjacentHTML('afterbegin',`
     <button class="icon-btn menu-btn" type="button" data-menu aria-expanded="false" aria-controls="sheet" aria-label="תפריט">${ic.menu}</button>
   </div>
 </div></header>
-<div class="sheet" id="sheet" aria-hidden="true">
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="תפריט" aria-hidden="true" inert>
   <button class="icon-btn sheet__close" type="button" data-menu-close aria-label="סגירת תפריט">${ic.x}</button>
   <nav aria-label="תפריט נייד"><a href="index.html">דף הבית</a>${navHtml}</nav>
   <p class="sheet__foot">רחוב רבקה 19, תלפיות · <a href="tel:+972722500885">072-2500885</a></p>
@@ -48,14 +48,14 @@ document.body.insertAdjacentHTML('beforeend',`
     <div class="foot__brand"><a class="logo" href="index.html" style="color:var(--on-dark)">${logo}<span class="logo__t"><span class="logo__en">LED CENTER</span><span class="logo__he" style="color:var(--on-dark-muted)">לד סנטר בע״מ</span></span></a>
       <p>ייצור, ייבוא ושיווק תאורת לד. ייעוץ, תכנון ותיקונים בחנות בתלפיות, ירושלים.</p>
       <div class="socials"><a href="https://www.facebook.com/yLedCenter/" aria-label="פייסבוק">${ic.fb}</a><a href="https://www.instagram.com/yehuda_shilo/" aria-label="אינסטגרם">${ic.ig}</a></div></div>
-    <div><h3>האתר</h3><ul>${nav.map(([h,t])=>`<li><a href="${h}">${t}</a></li>`).join('')}</ul></div>
-    <div><h3>יצירת קשר</h3><ul><li><a href="tel:+972722500885">משרד 072-2500885</a></li><li><a href="tel:+972547543820">נייד 054-7543820</a></li><li><a href="https://wa.me/${WA}">וואטסאפ</a></li><li><a href="${MAPS}">רחוב רבקה 19, תלפיות<br>(בתוך ביג אמפוריו)</a></li></ul></div>
-    <div><h3>שעות פתיחה</h3>${hoursDl}</div>
+    <div><h2>האתר</h2><ul>${nav.map(([h,t])=>`<li><a href="${h}">${t}</a></li>`).join('')}</ul></div>
+    <div><h2>יצירת קשר</h2><ul><li><a href="tel:+972722500885">משרד 072-2500885</a></li><li><a href="tel:+972547543820">נייד 054-7543820</a></li><li><a href="https://wa.me/${WA}">וואטסאפ</a></li><li><a href="${MAPS}">רחוב רבקה 19, תלפיות<br>(בתוך ביג אמפוריו)</a></li></ul></div>
+    <div><h2>שעות פתיחה</h2>${hoursDl}</div>
   </div>
-  <div class="foot__row"><span>© 2026 לד סנטר בע״מ · המחירים באתר כוללים מע״מ · צילומי השראה: Unsplash</span><nav aria-label="משפטי"><a href="accessibility.html">הצהרת נגישות</a><a href="terms.html">תקנון ופרטיות</a></nav></div>
+  <div class="foot__row"><span>© ${new Date().getFullYear()} לד סנטר בע״מ · המחירים באתר כוללים מע״מ · צילומי השראה: Unsplash</span><nav aria-label="משפטי"><a href="accessibility.html">הצהרת נגישות</a><a href="terms.html">תקנון ופרטיות</a></nav></div>
 </div></footer>
 <div class="scrim" data-cart-close></div>
-<aside class="drawer" id="drawer" aria-hidden="true" aria-labelledby="drawer-h">
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="drawer-h" inert>
   <div class="drawer__head"><h2 id="drawer-h">סל ההזמנה</h2><button class="icon-btn" type="button" data-cart-close aria-label="סגירת הסל">${ic.x}</button></div>
   <ul class="drawer__list" id="cart-lines"></ul>
   <div class="drawer__foot">
@@ -64,6 +64,7 @@ document.body.insertAdjacentHTML('beforeend',`
     <p>ההזמנה נשלחת ליהודה לאישור מלאי ומחיר. התשלום והאיסוף בחנות או במשלוח בתיאום.</p>
   </div>
 </aside>
+<div role="complementary" aria-label="קיצורים: וואטסאפ ונגישות">
 <a class="fab fab--wa" href="https://wa.me/${WA}" target="_blank" rel="noopener" aria-label="שיחה בוואטסאפ">${ic.wa}</a>
 <button class="fab fab--a11y" type="button" data-a11y aria-expanded="false" aria-controls="a11y" aria-label="תפריט נגישות">${ic.a11y}</button>
 <div class="a11y" id="a11y" role="dialog" aria-label="תפריט נגישות">
@@ -78,11 +79,26 @@ document.body.insertAdjacentHTML('beforeend',`
   </div>
   <a href="accessibility.html">להצהרת הנגישות</a>
 </div>
+</div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>`);
 
-/* menu */
+/* links to the Google Maps listing (reviews, directions) */
+document.querySelectorAll('a[data-maps]').forEach(a=>a.href=MAPS);
+
+/* menu and cart are modal panels: while closed they are inert (not reachable by Tab or a screen reader);
+   opening one moves focus into it and makes the rest of the page inert, closing it returns focus to where it was */
+let opener=null;
+const panelBg=()=>[...document.body.children].filter(e=>!e.matches('.sheet,.drawer,.scrim,.toast,script'));
+const setPanel=(c,on)=>{
+  if(c.classList.contains('is-open')===on) return;
+  c.classList.toggle('is-open',on);c.setAttribute('aria-hidden',String(!on));c.inert=!on;
+  panelBg().forEach(e=>e.inert=on);
+  document.body.style.overflow=on?'hidden':'';
+  if(on){opener=document.activeElement;requestAnimationFrame(()=>{const f=c.querySelector('button,a[href]');f&&f.focus()})}
+  else{if(opener&&document.contains(opener))opener.focus();opener=null}
+};
 const sheet=document.getElementById('sheet'),mb=document.querySelector('[data-menu]');
-const setMenu=v=>{sheet.classList.toggle('is-open',v);sheet.setAttribute('aria-hidden',String(!v));mb.setAttribute('aria-expanded',String(v));document.body.style.overflow=v?'hidden':''};
+const setMenu=v=>{setPanel(sheet,v);mb.setAttribute('aria-expanded',String(v))};
 mb.addEventListener('click',()=>setMenu(true));
 sheet.addEventListener('click',e=>{if(e.target.closest('a,[data-menu-close]'))setMenu(false)});
 
@@ -100,17 +116,20 @@ window.say=m=>{toast.textContent=m;toast.classList.add('is-on');clearTimeout(tt)
 /* cart, kept for this visitor in localStorage */
 const fmt=n=>(Math.round(n*100)/100).toLocaleString('he-IL',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})+' ₪';
 window.fmt=fmt;
-let cart={};try{cart=JSON.parse(localStorage.getItem('lc-cart')||'{}')}catch(e){}
-const save=()=>{try{localStorage.setItem('lc-cart',JSON.stringify(cart))}catch(e){}};
 const P=id=>window.findProduct?findProduct(id):undefined;
+/* the saved cart is checked on load: only products that still exist, with whole quantities from 1 to 999 */
+let cart={};try{const raw=JSON.parse(localStorage.getItem('lc-cart')||'{}');for(const id in raw){const q=Math.floor(+raw[id]);if(P(id)&&q>0)cart[id]=Math.min(q,999)}}catch(e){}
+const save=()=>{try{localStorage.setItem('lc-cart',JSON.stringify(cart))}catch(e){}};
+save();
+const cartIds=()=>Object.keys(cart).filter(P);
 function renderCart(){
-  const ids=Object.keys(cart).filter(P);
+  const ids=cartIds();
   const count=ids.reduce((a,id)=>a+cart[id],0);
   document.querySelectorAll('.badge').forEach(b=>{b.textContent=count;b.dataset.n=count});
   let sub=0,ask=false;
   const list=document.getElementById('cart-lines');
   list.innerHTML=ids.length?ids.map(id=>{const p=P(id),q=cart[id];if(p.price!=null)sub+=gross(p.price)*q;else ask=true;
-    return `<li class="dl"><div class="dl__img">${drawProduct(p)}</div><div><b>${p.name}</b><small>${p.price!=null?fmt(gross(p.price))+' ליחידה':'מחיר לפי דגם'}</small></div><div class="qty"><button type="button" data-dec="${id}" aria-label="הפחתה">−</button><span>${q}</span><button type="button" data-inc="${id}" aria-label="הוספה">+</button></div></li>`}).join('')
+    return `<li class="dl"><div class="dl__img">${drawProduct(p)}</div><div><b>${p.name}</b><small>${p.price!=null?fmt(gross(p.price))+' ליחידה':'מחיר לפי דגם'}</small></div><div class="qty"><button type="button" data-dec="${id}" aria-label="הפחתת כמות: ${p.name}">−</button><span aria-label="כמות ${q}">${q}</span><button type="button" data-inc="${id}" aria-label="הוספת כמות: ${p.name}">+</button></div></li>`}).join('')
     :'<li class="drawer__empty">הסל ריק.<br><a class="link" href="shop.html">לחנות</a></li>';
   sub=Math.round(sub*100)/100;
   document.getElementById('cart-tot').textContent=fmt(sub)+(ask?' +':'');
@@ -119,63 +138,77 @@ function renderCart(){
 }
 const calm=()=>matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('a11y-still');
 const bump=()=>{if(calm())return;document.querySelectorAll('.badge').forEach(b=>b.animate([{transform:'scale(1)'},{transform:'scale(1.25)'},{transform:'scale(1)'}],{duration:260,easing:'cubic-bezier(.23,1,.32,1)'}))};
-window.addToCart=(id,q=1)=>{cart[id]=(cart[id]||0)+q;save();renderCart();bump();say('נוסף לסל ההזמנה')};
+window.addToCart=(id,q=1)=>{if(!P(id))return;cart[id]=Math.min(999,(cart[id]||0)+q);save();renderCart();bump();say('נוסף לסל ההזמנה')};
 const drawer=document.getElementById('drawer'),scrim=document.querySelector('.scrim');
-const setCart=v=>{drawer.classList.toggle('is-open',v);scrim.classList.toggle('is-open',v);drawer.setAttribute('aria-hidden',String(!v));document.body.style.overflow=v?'hidden':''};
+const setCart=v=>{setPanel(drawer,v);scrim.classList.toggle('is-open',v)};
 window.openCart=()=>setCart(true);
 document.addEventListener('click',e=>{
   const a=e.target.closest('[data-add]');
   if(a){addToCart(a.dataset.add,+(a.dataset.qty||1));if(a.classList.contains('add')){a.classList.add('is-added');const t=a.lastChild.textContent;a.lastChild.textContent='נוסף';setTimeout(()=>{a.classList.remove('is-added');a.lastChild.textContent=t},1300)}return}
-  const i=e.target.closest('[data-inc]');if(i){cart[i.dataset.inc]++;save();renderCart();return}
-  const d=e.target.closest('[data-dec]');if(d){const id=d.dataset.dec;cart[id]--;if(cart[id]<=0)delete cart[id];save();renderCart();return}
+  const i=e.target.closest('[data-inc]');if(i){const id=i.dataset.inc;cart[id]=Math.min(999,(cart[id]||0)+1);save();renderCart();drawer.querySelector(`[data-inc="${id}"]`)?.focus();return}
+  const d=e.target.closest('[data-dec]');if(d){const id=d.dataset.dec;cart[id]--;if(cart[id]<=0)delete cart[id];save();renderCart();(drawer.querySelector(`[data-dec="${id}"]`)||drawer.querySelector('[data-cart-close]')).focus();return}
   if(e.target.closest('[data-cart-open]'))setCart(true);
   if(e.target.closest('[data-cart-close]'))setCart(false);
-  if(e.target.closest('#cart-send')&&!Object.keys(cart).length){e.preventDefault();say('הסל ריק עדיין')}
+  if(e.target.closest('#cart-send')&&!cartIds().length){e.preventDefault();say('הסל ריק עדיין')}
 });
 renderCart();
 
 /* accessibility menu, choices remembered on this device */
 const a11y=document.getElementById('a11y'),ab=document.querySelector('[data-a11y]');
-ab.addEventListener('click',()=>{const v=!a11y.classList.contains('is-open');a11y.classList.toggle('is-open',v);ab.setAttribute('aria-expanded',String(v))});
+const setA11y=(v,back)=>{if(a11y.classList.contains('is-open')===v)return;a11y.classList.toggle('is-open',v);ab.setAttribute('aria-expanded',String(v));if(v)requestAnimationFrame(()=>a11y.querySelector('button').focus());else if(back)ab.focus()};
+ab.addEventListener('click',()=>setA11y(!a11y.classList.contains('is-open'),true));
+document.addEventListener('click',e=>{if(!a11y.contains(e.target)&&!ab.contains(e.target))setA11y(false)});
 let modes=[];try{modes=JSON.parse(localStorage.getItem('lc-a11y')||'[]')}catch(e){}
-const applyModes=()=>{['big','contrast','links','still','font'].forEach(m=>{document.documentElement.classList.toggle('a11y-'+m,modes.includes(m));const b=a11y.querySelector(`[data-mode="${m}"]`);b&&b.setAttribute('aria-pressed',String(modes.includes(m)))});try{localStorage.setItem('lc-a11y',JSON.stringify(modes))}catch(e){}};
+const applyModes=()=>{['big','contrast','links','still','font'].forEach(m=>{document.documentElement.classList.toggle('a11y-'+m,modes.includes(m));const b=a11y.querySelector(`[data-mode="${m}"]`);b&&b.setAttribute('aria-pressed',String(modes.includes(m)))});try{localStorage.setItem('lc-a11y',JSON.stringify(modes))}catch(e){}
+  /* pinned scroll scenes re-measure, so "stop animations" and larger text take effect without a reload */
+  window.refreshScroll&&requestAnimationFrame(()=>refreshScroll());window.dispatchEvent(new Event('resize'))};
 a11y.addEventListener('click',e=>{const b=e.target.closest('[data-mode]');if(b){const m=b.dataset.mode;modes=modes.includes(m)?modes.filter(x=>x!==m):[...modes,m];applyModes()}if(e.target.closest('[data-reset]')){modes=[];applyModes()}});
 applyModes();
 
-addEventListener('keydown',e=>{if(e.key==='Escape'){setMenu(false);setCart(false);a11y.classList.remove('is-open');ab.setAttribute('aria-expanded','false')}});
+addEventListener('keydown',e=>{if(e.key==='Escape'){setMenu(false);setCart(false);setA11y(false,a11y.contains(document.activeElement))}});
 
 /* reveal on scroll */
 document.body.classList.remove('no-js');
-const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{rootMargin:'0px 0px -6% 0px'});
+/* the stagger delay is cleared once an element has appeared, so later hover and filter changes are not delayed */
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){const el=en.target;el.classList.add('in');io.unobserve(el);setTimeout(()=>{el.style.transitionDelay=''},1200)}}),{rootMargin:'0px 0px -6% 0px'});
 window.observeReveal=()=>document.querySelectorAll('.rv:not(.in)').forEach((el,i)=>{el.style.transitionDelay=(i%4)*60+'ms';io.observe(el)});
 observeReveal();
 
 /* product card markup, shared by home and shop */
 window.cardHTML=p=>`<article class="pcard rv" data-cat="${p.cat}">
-  <a class="pcard__img" href="product.html?id=${p.id}" aria-label="${p.name}">${drawProduct(p)}${p.tag?`<span class="pcard__tag">${p.tag}</span>`:''}</a>
+  <a class="pcard__img" href="product.html?id=${p.id}" tabindex="-1" aria-hidden="true">${drawProduct(p)}${p.tag?`<span class="pcard__tag">${p.tag}</span>`:''}</a>
   <div class="pcard__body"><span class="pcard__cat">${CATS[p.cat].name}</span><a class="pcard__name" href="product.html?id=${p.id}">${p.name}</a><p class="pcard__spec">${p.spec}</p>
   <div class="pcard__row">${p.price!=null?`<span class="price"><b class="num">${fmt(gross(p.price))}</b><small>כולל מע״מ</small></span>`:`<span class="price price--ask"><b>מחיר לפי דגם</b><small>נשלח הצעה</small></span>`}
-  <button class="add" type="button" data-add="${p.id}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>הוספה לסל</button></div></div></article>`;
+  <button class="add" type="button" data-add="${p.id}" aria-label="הוספה לסל: ${p.name}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>הוספה לסל</button></div></div></article>`;
 })();
 
-/* scroll progress: [data-sp="pin"] gets --p from 0 to 1 while it is pinned,
+/* scroll progress: [data-sp="pin"] gets --p from 0 to 1 while its first child is stuck (sticky),
    [data-sp="view"] gets --p from 0 (entering) to 1 (leaving). Pages read --p in CSS or listen to "sp" events. */
 (function(){
   const els=[...document.querySelectorAll('[data-sp]')];
   if(!els.length) return;
-  const still=matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('a11y-still');
+  const root=document.documentElement;
+  const still=()=>matchMedia('(prefers-reduced-motion: reduce)').matches||root.classList.contains('a11y-still');
   let ticking=false;
+  function progress(el,vh){
+    const r=el.getBoundingClientRect(),k=el.dataset.sp;
+    if(k==='pin'){
+      /* measured from where the pin actually sticks (its CSS top, below the header) to where it lets go,
+         so there is no dead scroll at either end and the phone toolbar showing or hiding does not matter */
+      const pin=el.firstElementChild,cs=getComputedStyle(pin);
+      if(cs.position!=='sticky') return 1; // unpinned (phones, landscape, reduced motion): show the finished state
+      return ((parseFloat(cs.top)||0)-r.top)/Math.max(1,r.height-pin.offsetHeight);
+    }
+    if(k==='top') return -r.top/Math.max(1,r.height);
+    return (vh-r.top)/(r.height+vh);
+  }
   function run(){
     ticking=false;
-    const vh=innerHeight;
-    els.forEach(el=>{
-      const r=el.getBoundingClientRect();
-      let p;
-      if(el.dataset.sp==='pin') p=-r.top/Math.max(1,r.height-vh);
-      else if(el.dataset.sp==='top') p=-r.top/Math.max(1,r.height);
-      else p=(vh-r.top)/(r.height+vh);
-      p=Math.min(1,Math.max(0,p));
-      if(still) p=el.dataset.sp==='pin'?1:.5;
+    const vh=innerHeight,calm=still();
+    /* read every position first, then write, so the browser lays the page out once per frame */
+    const ps=els.map(el=>calm?(el.dataset.sp==='pin'?1:.5):progress(el,vh));
+    els.forEach((el,i)=>{
+      const p=Math.min(1,Math.max(0,ps[i]));
       if(el._p!==p){el._p=p;el.style.setProperty('--p',p.toFixed(4));el.dispatchEvent(new CustomEvent('sp',{detail:p}))}
     });
   }
@@ -188,11 +221,10 @@ window.cardHTML=p=>`<article class="pcard rv" data-cat="${p.cat}">
 (function(){
   const els=document.querySelectorAll('[data-count]');
   if(!els.length) return;
-  const still=matchMedia('(prefers-reduced-motion: reduce)').matches;
   const io=new IntersectionObserver(es=>es.forEach(e=>{
     if(!e.isIntersecting) return; io.unobserve(e.target);
     const el=e.target,to=+el.dataset.count,from=+(el.dataset.from||0),suf=el.dataset.suffix||'',t0=performance.now(),d=1600;
-    if(still){el.textContent=to+suf;return}
+    if(matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('a11y-still')){el.textContent=to+suf;return}
     const step=t=>{const k=Math.min(1,(t-t0)/d),v=Math.round(from+(to-from)*(1-Math.pow(1-k,3)));el.textContent=v+suf;if(k<1)requestAnimationFrame(step)};
     requestAnimationFrame(step);
   }),{threshold:.6});

@@ -35,9 +35,9 @@ window.PRODUCTS = [
   // accessories
   { id:'clip-steel',  cat:'acc', name:'קליפס נירוסטה לפרופיל שקוע', price:25, kind:'clip',   photo:'a-clip',     spec:'לקיבוע פרופיל שקוע בלי ברגים' },
   { id:'hanging-set', cat:'acc', name:'סט תליה לגוף תאורה',        price:65, kind:'hang',   photo:'a-set',      spec:'כבלי פלדה, מחברים ותפסנים' },
-  { id:'driver',      cat:'acc', name:'שנאי Mean Well',            price:null, kind:'driver', photo:'c-drivers', spec:'לפי ההספק של הפסים. מחשבון השנאי יעזור לבחור' },
-  { id:'tape-3m',     cat:'acc', name:'דבק דו-צדדי 3M VHB',        price:null, kind:'tape',   photo:'c-adhesive', spec:'להדבקה חזקה של פסים ופרופילים' },
-  { id:'bulb',        cat:'acc', name:'נורות לד Duracell',         price:null, kind:'bulb',   photo:'c-bulbs',    spec:'נורות E27 ו-GU10 במגוון עוצמות' }
+  { id:'driver',      cat:'acc', name:'שנאי Mean Well',            price:null, kind:'driver', photo:'c-drivers', brand:'Mean Well', spec:'לפי ההספק של הפסים. מחשבון השנאי יעזור לבחור' },
+  { id:'tape-3m',     cat:'acc', name:'דבק דו-צדדי 3M VHB',        price:null, kind:'tape',   photo:'c-adhesive', brand:'3M', spec:'להדבקה חזקה של פסים ופרופילים' },
+  { id:'bulb',        cat:'acc', name:'נורות לד Duracell',         price:null, kind:'bulb',   photo:'c-bulbs',    brand:'Duracell', spec:'נורות E27 ו-GU10 במגוון עוצמות' }
 ];
 
 /* ---------- product drawings: one studio style for the whole catalogue ---------- */
@@ -107,11 +107,12 @@ window.PRODUCTS = [
   };
 })();
 
-/* lookup, including drivers sized by the calculator (id "driver-150") */
+/* lookup, including drivers sized by the calculator (id "driver-150"), only in the sizes the calculator offers */
+window.DRIVER_SIZES=[35,50,75,100,150,200,350];
 window.findProduct=function(id){
   const p=PRODUCTS.find(x=>x.id===id); if(p) return p;
   const m=/^driver-(\d+)$/.exec(id);
-  if(m){const b=PRODUCTS.find(x=>x.id==='driver');return Object.assign({},b,{id,name:'שנאי Mean Well '+m[1]+'W',spec:'הספק '+m[1]+' וואט'})}
+  if(m&&DRIVER_SIZES.includes(+m[1])){const b=PRODUCTS.find(x=>x.id==='driver');return Object.assign({},b,{id,name:'שנאי Mean Well '+m[1]+'W',spec:'הספק '+m[1]+' וואט'})}
 };
 
 /* consumer price: Israeli law requires showing the total including VAT */
@@ -123,5 +124,5 @@ window.REVIEWS=[
   {n:'אורלי א.',t:'שירות מקצועי ביותר. צוות יסודי ומקצועי, שנתן לנו הרבה טיפים חשובים. ממליצים בחום.'},
   {n:'אדגר א.', t:'חנות מושלמת לתאורת לד, עם סדנה בתוך החנות שנותנת פתרונות לבעיות בתאורת לד. שירות מהיר ואדיב.'}
 ];
-window.STARS='<span class="stars" aria-label="5 כוכבים">'+'<svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.6 6 .7-4.5 4.1 1.2 6L10 15l-5.3 2.9 1.2-6L1.4 7.8l6-.7z"/></svg>'.repeat(5)+'</span>';
+window.STARS='<span class="stars" role="img" aria-label="דירוג 5 מתוך 5">'+'<svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.6 6 .7-4.5 4.1 1.2 6L10 15l-5.3 2.9 1.2-6L1.4 7.8l6-.7z"/></svg>'.repeat(5)+'</span>';
 window.reviewHTML=r=>`<figure class="review rv">${STARS}<p>${r.t}</p><footer><span>${r.n}</span><span>ביקורת בגוגל</span></footer></figure>`;
