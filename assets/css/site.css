@@ -89,12 +89,10 @@ h1,h2{font-weight:700}
 .hdr__bar{display:flex;align-items:center;justify-content:space-between;height:var(--hdr);gap:24px}
 .logo{display:flex;align-items:center;gap:12px;flex:none}
 .hdr .logo{min-height:44px}
-.logo__mark{position:relative;display:block;width:46px;height:14px;border-radius:3px;background:#15171a;box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
-.logo__mark i{position:absolute;inset:4px 5px;border-radius:2px;background:linear-gradient(90deg,#ffe7c2,#fff8ec 50%,#ffe7c2);box-shadow:0 0 6px rgba(255,214,150,.9),0 0 16px rgba(255,200,120,.45)}
-.foot .logo__mark{background:#2a2c30}
-.logo__t{display:flex;flex-direction:column;line-height:1}
-.logo__en{font-size:0.96875rem;font-weight:600;letter-spacing:.24em;direction:ltr}
-.logo__he{font-size:0.75rem;color:var(--muted);margin-top:6px;letter-spacing:.06em}
+.logo__svg{display:block;height:32px;width:auto;overflow:visible}
+.foot .logo{flex-direction:column;align-items:flex-start;gap:12px}
+.foot .logo__svg{height:38px}
+.logo__he{font-size:0.75rem;color:var(--muted);letter-spacing:.06em;line-height:1}
 .nav{display:flex;gap:30px}
 .nav a{font-size:1.03125rem;font-weight:500;color:var(--ink);position:relative;padding:6px 0;white-space:nowrap}
 .nav a::after{content:"";position:absolute;inset-inline:0;bottom:0;height:2px;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
@@ -341,6 +339,7 @@ html.a11y-font body{font-family:Arial,sans-serif}
   :root{--hdr:64px}
   body{font-size:1rem}
   .logo__he{display:none}
+  .logo__svg{height:28px}
   .pgrid{grid-template-columns:1fr 1fr;gap:10px}
   .pcard{padding:16px 14px 14px}
   .pcard__name{font-size:1rem}
@@ -446,7 +445,7 @@ html.a11y-still .giant > .giant__y{opacity:1!important;transform:none!important}
 @media (max-width:1180px){html.a11y-big .nav,html.a11y-big .hdr__tel{display:none}html.a11y-big .menu-btn{display:grid}}
 
 /* very narrow phones: keep the header inside 320px */
-@media (max-width:360px){.hdr__bar{gap:12px}.logo{gap:8px}.logo__mark{width:36px}.logo__en{letter-spacing:.14em;font-size:0.90625rem}}
+@media (max-width:360px){.hdr__bar{gap:12px}.logo{gap:8px}.logo__svg{height:24px}}
 
 /* phones: the page end stays clear of the floating buttons */
 @media (max-width:760px){.foot{padding-bottom:calc(96px + env(safe-area-inset-bottom,0px))}}
