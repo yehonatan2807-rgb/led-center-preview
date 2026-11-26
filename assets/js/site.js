@@ -11,6 +11,8 @@ window.SITE={WA,VAT,HOURS,MAPS,WAZE};
 const page=document.body.dataset.page||'';
 const nav=[['shop.html','חנות','shop'],['calculator.html','מחשבון שנאי','calc'],['projects.html','רעיונות','projects'],['guides.html','מדריכים','guides'],['about.html','אודות','about'],['contact.html','צור קשר','contact']];
 const navHtml=nav.map(([h,t,k])=>`<a href="${h}"${k===page?' aria-current="page"':''}>${t}</a>`).join('');
+/* the phone menu: home first, every link numbered, an arrow at its end */
+const sheetNav=[['index.html','דף הבית','home'],...nav].map(([h,t,k],i)=>`<a href="${h}"${k===page?' aria-current="page"':''}><i aria-hidden="true">${String(i+1).padStart(2,'0')}</i><span>${t}</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8H3M6 4.5L2.5 8 6 11.5"/></svg></a>`).join('');
 const ic={
   bag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>',
   menu:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>',
@@ -35,9 +37,13 @@ document.body.insertAdjacentHTML('afterbegin',`
   </div>
 </div></header>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="תפריט" aria-hidden="true" inert>
-  <button class="icon-btn sheet__close" type="button" data-menu-close aria-label="סגירת תפריט">${ic.x}</button>
-  <nav aria-label="תפריט נייד"><a href="index.html">דף הבית</a>${navHtml}</nav>
-  <p class="sheet__foot">רחוב רבקה 19, תלפיות · <a href="tel:+972722500885">072-2500885</a></p>
+  <div class="sheet__top"><button class="icon-btn sheet__close" type="button" data-menu-close aria-label="סגירת תפריט">${ic.x}</button><p class="sheet__label">לד סנטר · ירושלים</p></div>
+  <nav class="sheet__nav" aria-label="תפריט נייד">${sheetNav}</nav>
+  <div class="sheet__foot">
+    <p data-open-now></p>
+    <div class="sheet__act"><a class="btn btn--wa" href="https://wa.me/${WA}" target="_blank" rel="noopener">${ic.wa}וואטסאפ</a><a class="btn btn--ghost-l" href="tel:+972722500885">072-2500885</a></div>
+    <p class="sheet__addr">רחוב רבקה 19, תלפיות · בתוך ביג אמפוריו</p>
+  </div>
 </div>`);
 
 const hoursDl=`<dl class="hours" data-hours>${HOURS.map(([d,h],i)=>`<dt data-day="${i}">${d}</dt><dd data-day="${i}">${h}</dd>`).join('')}</dl>`;
@@ -129,7 +135,7 @@ function renderCart(){
   let sub=0,ask=false;
   const list=document.getElementById('cart-lines');
   list.innerHTML=ids.length?ids.map(id=>{const p=P(id),q=cart[id];if(p.price!=null)sub+=gross(p.price)*q;else ask=true;
-    return `<li class="dl"><div class="dl__img">${drawProduct(p)}</div><div><b>${p.name}</b><small>${p.price!=null?fmt(gross(p.price))+' ליחידה':'מחיר לפי דגם'}</small></div><div class="qty"><button type="button" data-dec="${id}" aria-label="הפחתת כמות: ${p.name}">−</button><span aria-label="כמות ${q}">${q}</span><button type="button" data-inc="${id}" aria-label="הוספת כמות: ${p.name}">+</button></div></li>`}).join('')
+    return `<li class="dl"><div><b>${p.name}</b><small>${p.price!=null?fmt(gross(p.price))+' ליחידה':'מחיר לפי דגם'}</small></div><div class="qty"><button type="button" data-dec="${id}" aria-label="הפחתת כמות: ${p.name}">−</button><span aria-label="כמות ${q}">${q}</span><button type="button" data-inc="${id}" aria-label="הוספת כמות: ${p.name}">+</button></div></li>`}).join('')
     :'<li class="drawer__empty">הסל ריק.<br><a class="link" href="shop.html">לחנות</a></li>';
   sub=Math.round(sub*100)/100;
   document.getElementById('cart-tot').textContent=fmt(sub)+(ask?' +':'');
@@ -174,12 +180,12 @@ const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){cons
 window.observeReveal=()=>document.querySelectorAll('.rv:not(.in)').forEach((el,i)=>{el.style.transitionDelay=(i%4)*60+'ms';io.observe(el)});
 observeReveal();
 
-/* product card markup, shared by home and shop */
+/* product card markup, shared by home, shop and product pages: text only, no picture */
 window.cardHTML=p=>`<article class="pcard rv" data-cat="${p.cat}">
-  <a class="pcard__img" href="product.html?id=${p.id}" tabindex="-1" aria-hidden="true">${drawProduct(p)}${p.tag?`<span class="pcard__tag">${p.tag}</span>`:''}</a>
-  <div class="pcard__body"><span class="pcard__cat">${CATS[p.cat].name}</span><a class="pcard__name" href="product.html?id=${p.id}">${p.name}</a><p class="pcard__spec">${p.spec}</p>
+  <div class="pcard__top"><span class="pcard__cat">${CATS[p.cat].name}</span>${p.tag?`<span class="pcard__tag">${p.tag}</span>`:''}</div>
+  <a class="pcard__name" href="product.html?id=${p.id}">${p.name}</a><p class="pcard__spec">${p.spec}</p>
   <div class="pcard__row">${p.price!=null?`<span class="price"><b class="num">${fmt(gross(p.price))}</b><small>כולל מע״מ</small></span>`:`<span class="price price--ask"><b>מחיר לפי דגם</b><small>נשלח הצעה</small></span>`}
-  <button class="add" type="button" data-add="${p.id}" aria-label="הוספה לסל: ${p.name}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>הוספה לסל</button></div></div></article>`;
+  <button class="add" type="button" data-add="${p.id}" aria-label="הוספה לסל: ${p.name}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>הוספה לסל</button></div></article>`;
 })();
 
 /* scroll progress: [data-sp="pin"] gets --p from 0 to 1 while its first child is stuck (sticky),
@@ -229,4 +235,21 @@ window.cardHTML=p=>`<article class="pcard rv" data-cat="${p.cat}">
     requestAnimationFrame(step);
   }),{threshold:.6});
   els.forEach(el=>io.observe(el));
+})();
+
+/* giant headings that cross a photo (home About, About page): the white copy is laid exactly over the real
+   heading, inside the photo frame; the lines rise into view once, or stand still for reduced motion */
+(function(){
+  const duos=[...document.querySelectorAll('.duo')];
+  if(!duos.length) return;
+  const calm=()=>matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('a11y-still');
+  const place=()=>duos.forEach(d=>{
+    const h=d.querySelector('.giant--ink'),w=d.querySelector('.giant--light'),m=d.querySelector('.duo__media');
+    if(!h||!w||!m) return;
+    const hr=h.getBoundingClientRect(),mr=m.getBoundingClientRect();
+    w.style.width=hr.width+'px';w.style.left=(hr.left-mr.left)+'px';w.style.top=(hr.top-mr.top)+'px';w.classList.add('is-set');
+  });
+  place();addEventListener('resize',place);addEventListener('load',place);document.fonts&&document.fonts.ready.then(place);
+  const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target)}}),{threshold:.3});
+  duos.forEach(d=>calm()?d.classList.add('is-in'):io.observe(d));
 })();

@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
 <title>לד סנטר | פסי לד ופרופילי אלומיניום, תלפיות ירושלים</title>
 <meta name="description" content="לד סנטר: חנות ובית מלאכה לתאורת לד בתלפיות, ירושלים, מאז 2012. פסי לד, פרופילי אלומיניום ושנאים, תכנון תאורה וליווי של הנדסאי חשמל.">
 <meta property="og:type" content="website"><meta property="og:title" content="לד סנטר | פסי לד ופרופילי אלומיניום בירושלים"><meta property="og:description" content="פסי לד, פרופילים ושנאים, תכנון וליווי אישי. תלפיות, ירושלים, מאז 2012."><meta property="og:image" content="https://yehonatan2807-rgb.github.io/led-center-preview/share.jpg"><meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#0d0e10"><link rel="canonical" href="https://www.ledcenter.co.il/">
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#ffffff"><link rel="canonical" href="https://www.ledcenter.co.il/">
 <meta name="google-site-verification" content="1X4vgmK9dcDfn4kEzdIZLh5kx7MqSVIE_jpLqpGzvAo">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ElectronicsStore","name":"לד סנטר בע\"מ","alternateName":"LED Center LTD","url":"https://www.ledcenter.co.il/","image":"https://yehonatan2807-rgb.github.io/led-center-preview/share.jpg","logo":"https://www.ledcenter.co.il/assets/brand/logo.svg","telephone":"+972-72-2500885",
@@ -16,164 +17,158 @@
 </script>
 <meta property="og:site_name" content="לד סנטר"><meta property="og:url" content="https://www.ledcenter.co.il/">
 <link rel="preload" href="assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/heebo-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/stock/_KfmNN0dJLI.jpg" as="image" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/site.css">
 <script>(function(){try{var st=JSON.parse(localStorage.getItem('lc-a11y')||'[]').indexOf('still')>-1}catch(e){}if(!st&&!matchMedia('(prefers-reduced-motion: reduce)').matches){var h=document.documentElement;h.classList.add('intro');setTimeout(function(){if(!h.classList.contains('intro-go'))h.classList.remove('intro')},3000)}})()</script>
 <style>
 :root{--night:#0d0e10;--warm:#fff3dc;--glow:255,205,140;--slow:cubic-bezier(.19,1,.22,1)}
+.sec .h-l{font-weight:700;letter-spacing:-.03em}
 
-/* header over the dark hero */
-body[data-page="home"] .hdr:not(.past){background:rgba(13,14,16,.86);border-color:rgba(242,241,238,.08);color:#f2f1ee}
-body[data-page="home"] .hdr:not(.past) .nav a{color:inherit;opacity:.78}
-body[data-page="home"] .hdr:not(.past) .nav a:hover{opacity:1}
-body[data-page="home"] .hdr:not(.past) .nav a::after{background:#ffd59a}
-body[data-page="home"] .hdr:not(.past) .logo__he{color:inherit;opacity:.62}
-body[data-page="home"] .hdr:not(.past) .logo__mark{background:#2a2c30}
-body[data-page="home"] .hdr:not(.past) .icon-btn{border-color:rgba(242,241,238,.22);color:inherit}
+/* 1. hero: full-width inspiration photographs that cross-fade behind copy that stays put */
+.show{position:relative;display:flex;flex-direction:column;min-height:clamp(500px,calc(88svh - var(--hdr)),820px);overflow:hidden;background:#15171a;color:#fff;isolation:isolate}
+.show__slides{position:absolute;inset:0;z-index:0}
+.slide{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;transition:opacity 1.2s var(--slow),visibility 0s 1.2s}
+.slide.is-out{opacity:1;visibility:visible;z-index:1;transition:none}
+.slide.is-on{opacity:1;visibility:visible;z-index:2;transition:opacity 1.2s var(--slow),visibility 0s}
+.slide img{width:100%;height:100%;object-fit:cover}
+/* a slow push-in on the photograph being shown; it holds still while the show is paused or the photo fades out */
+.slide.is-on img,.slide.is-out img{animation:kb 9s linear both}
+.slide.is-out img,.show.is-paused .slide img{animation-play-state:paused}
+@keyframes kb{from{transform:scale(1.1)}to{transform:scale(1)}}
+.show::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(270deg,rgba(10,11,13,.76),rgba(10,11,13,.44) 42%,rgba(10,11,13,.08) 78%),linear-gradient(0deg,rgba(10,11,13,.62),rgba(10,11,13,0) 32%)}
+.show__copy{position:relative;z-index:2;flex:1;width:100%;display:flex;flex-direction:column;justify-content:center;padding-top:clamp(40px,6vh,72px);padding-bottom:clamp(130px,17vh,180px);text-shadow:0 1px 30px rgba(0,0,0,.25)}
+.show .eyebrow{color:rgba(255,255,255,.84)}
+.show h1{font-size:clamp(2.375rem,min(4.6vw,8vh),4.75rem);font-weight:300;letter-spacing:-.035em;line-height:1.04;margin:18px 0}
+.show h1 b{font-weight:700}
+.show__copy > p:not(.eyebrow){max-width:46ch;font-size:clamp(1rem,1.1vw,1.125rem);font-weight:300;color:rgba(255,255,255,.9)}
+.show__act{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn--pale{background:#fff;border-color:#fff;color:var(--ink)}
+.btn--pale:hover{background:#f2f1ee;border-color:#f2f1ee}
+.show :focus-visible{outline-color:#fff}
 
-/* 1. hero: the lit profile, and the light grows as you scroll */
-.hero{position:relative;background:var(--night);color:#f2f1ee;overflow:hidden;isolation:isolate;padding-top:clamp(80px,12vh,140px);--p:0}
-.hero__copy{text-align:center;max-width:900px;margin-inline:auto;transform:translateY(calc(var(--p) * -80px));opacity:calc(1 - var(--p) * 1.4)}
-.hero .eyebrow{justify-content:center;color:#9a9ea4}
-.hero h1{font-size:clamp(2.75rem,6vw,6rem);font-weight:300;letter-spacing:-.04em;line-height:1.02;margin:24px 0 22px}
-.hero h1 b{font-weight:500}
-.hero p{font-size:clamp(1.0625rem,1.35vw,1.25rem);font-weight:300;color:#a7abb1;max-width:52ch;margin-inline:auto}
-.hero__act{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:34px}
-.btn--pale{background:#f2f1ee;border-color:#f2f1ee;color:var(--night)}
-.btn--pale:hover{background:#fff;border-color:#fff}
-.stage{position:relative;height:clamp(220px,26vw,360px);margin-top:clamp(40px,6vh,72px);perspective:1400px}
-.wall{position:absolute;inset:0;background:radial-gradient(58% 80% at 50% 10%,rgba(var(--glow),calc(.0 + var(--on,0) * (.2 + var(--p) * .25))),rgba(var(--glow),calc(var(--on,0) * .05)) 45%,transparent 75%)}
-.profile{position:absolute;top:clamp(26px,4vw,56px);left:50%;width:min(86%,1180px);transform:translateX(-50%) rotateX(calc(58deg - var(--p) * 30deg)) scale(calc(1 + var(--p) * .06));transform-origin:top center}
-.profile__top{height:clamp(22px,2.4vw,34px);border-radius:3px 3px 0 0;background:linear-gradient(180deg,#5b5f65,#9da2a8 30%,#c9cdd1 52%,#8a8f95 78%,#4b4f54);box-shadow:inset 0 1px 0 rgba(255,255,255,.35)}
-.profile__face{position:relative;height:clamp(20px,2.2vw,30px);background:linear-gradient(180deg,#2b2e33,#1b1d21);border-radius:0 0 3px 3px;display:flex;align-items:center;padding:0 clamp(8px,1vw,14px)}
-.diffuser{position:relative;flex:1;height:58%;border-radius:2px;background:#3a3c40;overflow:hidden}
-.diffuser i{position:absolute;inset:0;background:linear-gradient(90deg,#ffe2b4,var(--warm) 20%,#fffaf2 50%,var(--warm) 80%,#ffe2b4);transform:scaleX(0);transition:transform .8s var(--slow)}
-.hero.on .diffuser i{transform:scaleX(1)}
-.beam{position:absolute;top:clamp(40px,5.6vw,80px);left:50%;width:min(86%,1180px);height:100%;transform:translateX(-50%);background:linear-gradient(180deg,rgba(var(--glow),.42),rgba(var(--glow),.1) 35%,transparent 75%);clip-path:polygon(3% 0,97% 0,118% 100%,-18% 100%);filter:blur(10px);opacity:calc(var(--on,0) * (.75 + var(--p) * .25));-webkit-mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);transition:opacity 2s}
-.hero.on{--on:1}
+/* the bar at the foot of the hero: which idea is shown, and the controls */
+.show__bar{position:absolute;z-index:3;inset-inline:0;bottom:0;padding-bottom:clamp(16px,3vh,32px)}
+.show__bar .wrap{display:flex;align-items:center;gap:8px 18px}
+.show__now{display:flex;align-items:center;gap:12px;margin:0;min-width:0}
+.show__now--top{display:none}
+.show__tag{font-size:0.75rem;font-weight:500;letter-spacing:.1em;color:rgba(255,255,255,.78);border:1px solid rgba(255,255,255,.38);border-radius:2px;padding:3px 8px;white-space:nowrap}
+.show__now a{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:1.0625rem;font-weight:500;white-space:nowrap}
+.show__now a svg{width:16px;height:16px;transition:transform .3s var(--ease)}
+@media (hover:hover) and (pointer:fine){.show__now a:hover svg{transform:translateX(-4px)}}
+.ticks{display:flex}
+.tick{position:relative;width:30px;height:44px;border:0;background:none;padding:0;cursor:pointer}
+.tick::before,.tick i{content:"";position:absolute;inset-inline:4px;top:50%;height:2px;margin-top:-1px;border-radius:2px}
+.tick::before{background:rgba(255,255,255,.28);transition:background .25s}
+.tick:hover::before,.tick[aria-current="true"]::before{background:rgba(255,255,255,.55)}
+/* the shown photo's line fills like an LED strip switching on, timed to the next change */
+.tick i{background:linear-gradient(90deg,#ffd59a,#fff3dc);box-shadow:0 0 8px rgba(255,200,120,.9);transform:scaleX(0);transform-origin:right}
+.tick[aria-current="true"] i{animation:fill 6.5s linear both}
+.show.is-paused .tick i{animation-play-state:paused}
+@keyframes fill{to{transform:scaleX(1)}}
+/* the controls: bare icons, dim until pointed at; each keeps a 44px touch area around it */
+.show__ctl{display:flex;gap:12px;margin-inline-start:auto}
+.rnd{position:relative;width:32px;height:32px;border:0;border-radius:50%;background:transparent;color:rgba(255,255,255,.9);filter:drop-shadow(0 1px 2px rgba(0,0,0,.6));display:grid;place-items:center;cursor:pointer;transition:background .25s,color .25s,transform .16s var(--ease-out)}
+.rnd::after{content:"";position:absolute;inset:-6px;border-radius:50%}
+.rnd:hover{background:rgba(255,255,255,.12);color:#fff}
+.rnd:active{transform:scale(.92)}
+.rnd svg{width:13px;height:13px}
+.rnd .i-play,.rnd.is-play .i-pause{display:none}
+.rnd.is-play .i-play{display:block}
 
-/* intro: played once on load. The header drops in, the headline rises word by word,
-   the profile slides up, then the LED strip switches on with a short real-LED flicker. */
-@property --on{syntax:"<number>";inherits:true;initial-value:0}
-.hero{transition:--on 1.4s var(--slow)}
-.hero h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .1em;margin-bottom:-.1em}
-.hero h1 .w > span{display:inline-block}
+/* intro: played once on load. The header drops in, the headline rises word by word, then the rest follows. */
+.show h1 .w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .1em;margin-bottom:-.1em}
+.show h1 .w > span{display:inline-block}
 html.intro .hdr{transform:translateY(-100%)}
-html.intro .hero .eyebrow,html.intro .hero__act .btn,html.intro .stage{opacity:0}
+html.intro .show .eyebrow,html.intro .show__act .btn,html.intro .show__bar,html.intro .show__now--top{opacity:0}
 /* the paragraph starts faint and blurred rather than invisible, so the page counts as drawn right away (LCP) */
-html.intro .hero p:not(.eyebrow){opacity:.2;filter:blur(8px)}
-html.intro .hero h1 .w > span{transform:translateY(108%)}
-html.intro .hero h1:not(.split){opacity:0}
+html.intro .show__copy > p:not(.eyebrow){opacity:.2;filter:blur(8px)}
+html.intro .show h1 .w > span{transform:translateY(108%)}
+html.intro .show h1:not(.split){opacity:0}
 html.intro-go .hdr{animation:in-drop .9s var(--slow) both}
-html.intro-go .hero .eyebrow{animation:in-up .8s .15s var(--slow) both}
-html.intro-go .hero h1 .w > span{animation:in-word 1.1s calc(.3s + var(--i) * 85ms) var(--slow) both}
-html.intro-go .hero p:not(.eyebrow){animation:in-focus 1s .95s var(--slow) both}
-html.intro-go .hero__act .btn{animation:in-up .8s calc(1.15s + var(--i,0) * 90ms) var(--slow) both}
-html.intro-go .hero__act .btn + .btn{--i:1}
-html.intro-go .stage{animation:in-stage 1.6s .55s var(--slow) both}
-.hero.lit .diffuser i,.hero.lit .beam,.hero.lit .wall{animation:flicker .75s linear}
+html.intro-go .show .eyebrow{animation:in-up .8s .15s var(--slow) both}
+html.intro-go .show h1 .w > span{animation:in-word 1.1s calc(.3s + var(--i) * 85ms) var(--slow) both}
+html.intro-go .show__copy > p:not(.eyebrow){animation:in-focus 1s .95s var(--slow) both}
+html.intro-go .show__act .btn{animation:in-up .8s calc(1.15s + var(--i,0) * 90ms) var(--slow) both}
+html.intro-go .show__act .btn + .btn{--i:1}
+html.intro-go .show__bar,html.intro-go .show__now--top{animation:in-up .8s 1.35s var(--slow) both}
 @keyframes in-drop{from{transform:translateY(-100%)}to{transform:none}}
 @keyframes in-up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
 @keyframes in-word{from{transform:translateY(108%)}to{transform:none}}
 @keyframes in-focus{from{opacity:.2;filter:blur(8px);transform:translateY(10px)}to{opacity:1;filter:none;transform:none}}
-@keyframes in-stage{from{opacity:0;transform:translateY(70px)}to{opacity:1;transform:none}}
-@keyframes flicker{0%{opacity:0}8%{opacity:.95}14%{opacity:.12}22%{opacity:1}29%{opacity:.3}38%{opacity:1}}
-@keyframes rise{to{opacity:1;transform:none}}
-@keyframes fade{to{opacity:1}}
 
-/* 2. official numbers */
-.facts{background:var(--night);color:#f2f1ee;border-top:1px solid rgba(242,241,238,.08)}
+/* official numbers */
+.facts{border-bottom:1px solid var(--line)}
 .facts .wrap{display:grid;grid-template-columns:repeat(3,1fr)}
-.facts .f{padding:clamp(34px,4vw,56px) 0}
-.facts .f + .f{border-inline-start:1px solid rgba(242,241,238,.1);padding-inline-start:clamp(24px,3vw,44px)}
-.facts b{direction:ltr;text-align:right;display:block;font-size:clamp(2.75rem,4.6vw,4.5rem);font-weight:200;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
-.facts span{display:block;margin-top:14px;color:#8d9197;font-size:0.9375rem}
+.facts .f{padding:clamp(24px,2.8vw,38px) 0}
+.facts .f + .f{border-inline-start:1px solid var(--line);padding-inline-start:clamp(24px,3vw,44px)}
+.facts b{direction:ltr;text-align:right;display:block;font-size:clamp(2.25rem,3.4vw,3.25rem);font-weight:200;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.facts span{display:block;margin-top:10px;color:var(--muted);font-size:0.9375rem}
 
-/* 3. the signature: from chip to installation, built by the scroll */
-.build{position:relative;height:420vh;background:var(--night);color:#f2f1ee;--p:0}
+
+/* the shop, without pictures: numbered category cards led by name and price, then the best sellers as text cards */
+.perks{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:6px 22px;font-size:0.9375rem;color:var(--ink-2)}
+.perks li{display:inline-flex;align-items:center;gap:9px}
+.perks li::before{content:"";width:6px;height:6px;border-radius:50%;background:#eba64a;box-shadow:0 0 6px rgba(238,166,74,.7)}
+.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.shop{padding-block:clamp(56px,5.6vw,84px)}
+.shop .head{margin-bottom:28px}
+.cat{position:relative;display:flex;flex-direction:column;min-height:200px;padding:20px 22px 18px;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:opacity .9s var(--ease),transform .5s var(--ease),box-shadow .35s,border-color .35s}
+/* the lit line along the card's top switches on with the hover, like the strip itself */
+.cat::before{content:"";position:absolute;top:0;inset-inline:0;height:3px;background:var(--led);box-shadow:var(--led-glow);transform:scaleX(0);transform-origin:right;transition:transform .7s var(--slow)}
+.cat__n{font-size:0.8125rem;font-weight:600;letter-spacing:.04em;color:var(--red-ink);font-variant-numeric:tabular-nums}
+.cat__t{margin-top:12px;font-size:clamp(1.375rem,1.9vw,1.75rem);font-weight:700;letter-spacing:-.02em;line-height:1.15}
+.cat__d{margin-top:8px;color:var(--muted);font-size:0.9375rem;line-height:1.55}
+.cat__f{display:flex;align-items:center;gap:14px;margin-top:auto;padding-top:20px}
+.cat__c{color:var(--muted);font-size:0.875rem;white-space:nowrap}
+.cat__p{margin-inline-start:auto;display:flex;flex-direction:column;align-items:flex-end;line-height:1.15;white-space:nowrap}
+.cat__p small{font-size:0.75rem;color:var(--faint)}
+.cat__p b{font-size:clamp(1.375rem,1.8vw,1.625rem);font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.cat__go{flex:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);display:grid;place-items:center;transition:background .3s,color .3s,border-color .3s}
+.cat__go svg{width:18px;height:18px;transition:transform .3s var(--ease)}
+@media (hover:hover) and (pointer:fine){
+  .cat:hover{transform:translateY(-3px);border-color:var(--ink);box-shadow:0 22px 44px -30px rgba(13,14,16,.5)}
+  .cat:hover::before{transform:scaleX(1)}
+  .cat:hover .cat__go{background:var(--ink);border-color:var(--ink);color:#fff}
+  .cat:hover .cat__go svg{transform:translateX(-3px)}
+}
+.shop__pop{margin-top:32px}
+.shop__h{display:flex;align-items:center;gap:12px;margin-bottom:14px;font-size:clamp(1.25rem,1.6vw,1.5rem);font-weight:700}
+.shop__h::before{content:"";width:22px;height:3px;border-radius:2px;background:var(--led);box-shadow:var(--led-glow)}
+/* the four best sellers keep one row on every desktop width (the shared grid drops to three at 1100) */
+@media (min-width:1024px){#popular{grid-template-columns:repeat(4,1fr)}}
+@media (max-width:899px){
+  .cats{grid-template-columns:1fr;gap:10px}
+  .cat{min-height:0;padding:18px 18px 16px}
+  .cat__t{margin-top:6px}
+  .cat__f{padding-top:14px}
+}
+
+/* the signature: from chip to installation, one continuous film played by the scroll.
+   The script sets every part from the eased progress on each frame; without it (or with reduced motion)
+   the finished, lit installation shows, which is what the rules below describe. */
+.build{position:relative;height:340vh;background:var(--night);color:#f2f1ee;--p:0;--pe:1}
 .build__pin{position:sticky;top:var(--hdr);height:calc(100svh - var(--hdr));display:grid;grid-template-columns:1fr 1.35fr;align-items:center;gap:clamp(24px,4vw,72px)}
-.steps{list-style:none;margin:0;padding:0;position:relative;padding-inline-start:26px}
+.steps{list-style:none;margin:0;padding:0;position:relative;padding-inline-start:26px;counter-reset:st}
 .steps::before{content:"";position:absolute;top:6px;bottom:6px;right:0;width:2px;background:rgba(242,241,238,.12)}
-.steps::after{content:"";position:absolute;top:6px;right:0;width:2px;height:calc((100% - 12px) * var(--p));background:linear-gradient(180deg,#fff3dc,#ffd59a);box-shadow:0 0 10px rgba(255,200,120,.8)}
-.steps li{padding:16px 0}
+.steps::after{content:"";position:absolute;top:6px;right:0;width:2px;height:calc((100% - 12px) * var(--pe));background:linear-gradient(180deg,#fff3dc,#ffd59a);box-shadow:0 0 10px rgba(255,200,120,.8)}
+.steps li{padding:14px 0;counter-increment:st}
 /* the step being told is lit; the others keep a readable dimmed title and reveal their text when reached */
-.steps h3,.steps p{transition:opacity .5s}
-.steps li:not(.is-on) h3{opacity:.55}
+.steps h3,.steps p{transition:opacity .45s var(--ease)}
+.steps li:not(.is-on) h3{opacity:.45}
 .steps li:not(.is-on) p{opacity:0}
-.steps h3{font-size:clamp(1.375rem,2vw,1.875rem);font-weight:300;letter-spacing:-.02em}
+.steps h3{display:flex;align-items:baseline;gap:12px;font-size:clamp(1.375rem,2vw,1.875rem);font-weight:700;letter-spacing:-.02em}
+.steps h3::before{content:"0" counter(st);font-size:0.8125rem;font-weight:600;letter-spacing:.04em;color:#ffcf86;font-variant-numeric:tabular-nums}
 .steps p{color:#a7abb1;font-size:0.96875rem;font-weight:300;margin-top:6px;max-width:38ch}
 .build__title{position:absolute;top:clamp(24px,5vh,56px);inset-inline:0;text-align:center}
-.build__title h2{font-size:clamp(1.75rem,2.6vw,2.5rem);font-weight:300;letter-spacing:-.025em}
+.build__title h2{font-size:clamp(1.75rem,2.6vw,2.5rem);font-weight:700;letter-spacing:-.03em}
 .scene{width:100%;height:auto;overflow:visible;direction:ltr}
-.scene *{transition:opacity .9s var(--slow),transform 1.1s var(--slow)}
-.scene .chip{transform-box:fill-box;transform-origin:center}
-.scene .chips rect{opacity:0}
-.scene .pcb{opacity:0;transform:scaleX(.1);transform-origin:400px 250px}
-.scene .housing,.scene .cover{opacity:0}
-.scene .housing{transform:translateY(-60px)}
-.scene .cover{transform:translateY(40px)}
-.scene .ceiling,.scene .wall2,.scene .cone{opacity:0}
-.scene .rig{transform:translateY(0)}
-.scene[data-step="1"] .solo{opacity:1}
-.scene .solo{opacity:0}
-.scene[data-step="1"] .solo{opacity:1}
-.scene[data-step="2"] .pcb,.scene[data-step="3"] .pcb,.scene[data-step="4"] .pcb{opacity:1;transform:none}
-.scene[data-step="2"] .chips rect,.scene[data-step="3"] .chips rect,.scene[data-step="4"] .chips rect{opacity:1}
-.scene[data-step="3"] .housing,.scene[data-step="4"] .housing{opacity:1;transform:none}
-.scene[data-step="3"] .cover,.scene[data-step="4"] .cover{opacity:1;transform:none}
-.scene[data-step="4"] .rig{transform:translateY(-150px)}
-.scene[data-step="4"] .ceiling,.scene[data-step="4"] .wall2{opacity:1}
-.scene .cone{filter:blur(8px)}
-.scene[data-step="4"] .cone{opacity:.9}
-.scene .halo{opacity:0}
-.scene[data-step="1"] .halo,.scene[data-step="2"] .halo{opacity:1}
+.scene .solo,.scene .halo{opacity:0}
+.scene .solo{transform-box:fill-box;transform-origin:center}
+.scene .pcb{transform-origin:400px 250px}
+.scene .rig{transform:translateY(-150px)}
+.scene .cover{opacity:.95}
+.scene .cone{filter:blur(8px);opacity:.9}
 
-/* 4. categories with a slow image drift */
-.cats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.cat{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:border-color .3s,box-shadow .3s;--p:.5}
-.cat:hover{border-color:var(--ink);box-shadow:0 18px 40px -26px rgba(13,14,16,.5)}
-.cat__img{aspect-ratio:4/3;overflow:hidden}
-.cat__img img{width:100%;height:118%;object-fit:cover;transform:translateY(calc((var(--p) - .5) * -14%))}
-.cat__b{padding:24px 26px 26px;display:flex;justify-content:space-between;align-items:end;gap:16px}
-.cat__b h3{font-size:1.5rem;font-weight:400}
-.cat__b p{color:var(--muted);font-size:0.9375rem;margin-top:6px;font-weight:300}
-.cat__b small{font-size:0.8125rem;color:var(--faint);white-space:nowrap}
-
-/* 5. ideas travel sideways */
-.pan{position:relative;height:260vh;background:var(--panel);--p:0}
-/* overflow:clip, not hidden: a card that gets keyboard focus must not scroll the row by itself */
-.pan__pin{position:sticky;top:var(--hdr);height:calc(100svh - var(--hdr));display:flex;flex-direction:column;justify-content:center;overflow:hidden;overflow:clip}
-.pan__head{width:100%;display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:clamp(28px,4vh,48px)}
-.pan__head .link{white-space:nowrap;flex:none}
-.pan__track{display:flex;gap:20px;padding-inline:var(--gut);width:max-content;transform:translateX(calc(var(--p) * var(--dist,0px)));will-change:transform}
-.pan__track a{position:relative;flex:none;width:min(clamp(260px,30vw,460px),calc((100svh - var(--hdr) - 230px) * .8));aspect-ratio:4/5;overflow:hidden;border-radius:var(--r);color:#fff}
-.pan__track img{width:100%;height:100%;object-fit:cover;filter:saturate(.8);transition:transform 1.4s var(--slow),filter .6s}
-@media (hover:hover) and (pointer:fine){.pan__track a:hover img{transform:scale(1.04);filter:saturate(1)}}
-.pan__track span{position:absolute;bottom:0;inset-inline:0;padding:20px 22px;background:linear-gradient(0deg,rgba(13,14,16,.72),transparent);font-size:1.25rem;font-weight:300}
-/* phones, tablets, short windows and reduced motion: no pinning. The row is a native swipe carousel
-   that snaps card by card, so the page keeps scrolling down normally and a sideways swipe moves the cards.
-   The same rules repeat for the "stop animations" button below. */
-@media (hover:none),(pointer:coarse),(max-width:1023px),(max-height:520px),(prefers-reduced-motion:reduce){
-  .pan{height:auto;padding-block:clamp(64px,10vw,96px)}
-  .pan__pin{position:static;height:auto;display:block;overflow:visible}
-  .pan__head{align-items:center;margin-bottom:24px}
-  .pan__track{transform:none;will-change:auto;width:auto;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut)}
-  .pan__track a{width:min(74vw,320px);scroll-snap-align:start}
-  .pan__track img{filter:none;transition:none}
-}
-html.a11y-still .pan{height:auto;padding-block:clamp(64px,10vw,96px)}
-html.a11y-still .pan__pin{position:static;height:auto;display:block;overflow:visible}
-html.a11y-still .pan__head{align-items:center;margin-bottom:24px}
-html.a11y-still .pan__track{transform:none;will-change:auto;width:auto;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut)}
-html.a11y-still .pan__track a{width:min(74vw,320px);scroll-snap-align:start}
-/* touch screens swipe, so the scrollbar is only clutter there; mouse users keep it */
-@media (hover:none){.pan__track{scrollbar-width:none}.pan__track::-webkit-scrollbar{display:none}}
-
-.why{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}
-.why > div{padding:30px 26px 34px 0}
-.why > div + div{padding-inline-start:26px;border-inline-start:1px solid var(--line)}
-.why h3{font-size:1.25rem;font-weight:500;margin-bottom:10px}
-.why p{color:var(--muted);font-size:0.96875rem;font-weight:300}
-.why i{display:block;width:24px;height:3px;border-radius:2px;background:linear-gradient(90deg,#ffd59a,#fff3dc);box-shadow:0 0 8px rgba(255,200,120,.8);margin-bottom:22px}
 
 .visit{display:grid;grid-template-columns:1fr 1.2fr;gap:16px}
 .visit__card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:clamp(28px,3.5vw,48px)}
@@ -184,28 +179,77 @@ html.a11y-still .pan__track a{width:min(74vw,320px);scroll-snap-align:start}
 .visit__rows dd{margin:0}
 .visit__rows a{direction:ltr;display:inline-block}
 .visit__act{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
-.map{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;min-height:440px;background:var(--panel)}
-.map iframe{width:100%;height:100%;min-height:440px;border:0;filter:grayscale(1) contrast(1.05)}
+.map{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;min-height:400px;background:var(--panel)}
+.map iframe{width:100%;height:100%;min-height:400px;border:0;filter:grayscale(1) contrast(1.05)}
 
+/* consult (the warm close is shared in site.css): the clients drift above the form,
+   on slimmer cards and tighter spacing, so the whole band still fits one screen */
+.consult{padding-block:clamp(44px,4vw,60px) clamp(56px,5vw,80px)}
+.consult__clients{margin-bottom:clamp(28px,3vw,44px)}
+.consult__clients .cl{height:clamp(80px,6.2vw,100px)}
+.consult__cl{font-size:0.8125rem;font-weight:500;letter-spacing:.08em;color:var(--muted);margin-bottom:16px}
+.cform{max-width:820px;margin:clamp(26px,3vw,36px) auto 0}
+.cform__what{border:0;margin:0 0 18px;padding:0;min-width:0}
+.cform__what legend{padding:0;margin:0 auto 10px;font-size:0.9375rem;font-weight:600}
+.cform__what legend span{margin-inline-start:6px;font-size:0.8125rem;font-weight:400;color:var(--muted)}
+.cform__chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.cform__chips label{position:relative;cursor:pointer}
+.cform__chips input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.cform__chips span{display:inline-flex;align-items:center;min-height:42px;padding:0 16px;border:1px solid var(--line-2);border-radius:var(--r);background:#fff;font-size:0.9375rem;transition:background .25s,color .25s,border-color .25s}
+.cform__chips label:hover span{border-color:var(--ink)}
+.cform__chips input:checked + span{background:var(--ink);border-color:var(--ink);color:#fff}
+.cform__chips input:focus-visible + span{outline:2px solid var(--red);outline-offset:3px}
+.cform__row{display:flex;justify-content:center;align-items:flex-start;flex-wrap:wrap;gap:12px}
+.cform .field{width:min(260px,100%);text-align:right}
+.cform .input{width:100%;height:52px;background:#fff}
+.cform .btn{height:52px;min-width:210px;margin-top:1.875rem}
+.cform__note{margin-top:18px;font-size:0.875rem;color:var(--muted)}
+.cform__note a{text-decoration:underline}
+
+/* low laptop screens: the photo blocks tighten their spacing so each fits on one screen.
+   The giant heading keeps its width-based size, which is what carries it across the photo's edge. */
+@media (min-width:1024px) and (max-height:820px){
+  .consult{padding-block:30px 48px}
+  .consult__clients{margin-bottom:22px}
+  .shop{padding-block:40px}
+  .cat{min-height:0}
+  #popular .pcard__spec{display:none}
+}
+/* below 1400px the page's side margin is narrower than the floating WhatsApp and accessibility buttons,
+   so the hero's controls rise above them */
+@media (max-width:1399px){
+  .show__bar{padding-bottom:86px}
+  .show__copy{padding-bottom:160px}
+}
 @media (max-width:1023px){
   .visit{grid-template-columns:1fr}
-  .cats{grid-template-columns:1fr 1fr}
-  .why{grid-template-columns:1fr 1fr}
-  .why > div:nth-child(3){border-inline-start:0;padding-inline-start:0}
+  /* tablets and phones: the idea's name moves to the top of the photo and the controls keep one row */
+  .show__bar .show__now{display:none}
+  .show__now--top{display:flex;position:absolute;z-index:3;top:12px;inset-inline:var(--gut)}
+  .show__bar{padding-bottom:78px}
+  .show__copy{padding-top:76px;padding-bottom:150px}
+  .show::after{background:linear-gradient(270deg,rgba(10,11,13,.76),rgba(10,11,13,.44) 42%,rgba(10,11,13,.08) 78%),linear-gradient(0deg,rgba(10,11,13,.62),rgba(10,11,13,0) 32%),linear-gradient(180deg,rgba(10,11,13,.45),rgba(10,11,13,0) 22%)}
   .build__pin{grid-template-columns:1fr;align-content:center;gap:8px}
   .build__title{position:static;padding-top:10px}
   .steps li{padding:8px 0}
   .steps li:not(.is-on){display:none}
 }
+@media (max-width:767px){
+  .show__copy{justify-content:flex-end}
+  .show::after{background:linear-gradient(0deg,rgba(10,11,13,.84),rgba(10,11,13,.5) 55%,rgba(10,11,13,.18)),linear-gradient(180deg,rgba(10,11,13,.45),rgba(10,11,13,0) 22%)}
+  .tick{width:28px}
+}
 @media (max-width:639px){
-  .hero__act .btn{flex:1 1 100%}
-  .profile,.beam{width:96%}
+  .show__act .btn{flex:1 1 100%}
   .facts .wrap{grid-template-columns:1fr}
-  .facts .f + .f{border-inline-start:0;padding-inline-start:0;border-top:1px solid rgba(242,241,238,.1)}
-  .cats,.why{grid-template-columns:1fr}
-  .why > div{padding-inline:0!important;border-inline-start:0!important;border-bottom:1px solid var(--line)}
+  .facts .f + .f{border-inline-start:0;padding-inline-start:0;border-top:1px solid var(--line)}
+  .cform__row{flex-direction:column;align-items:stretch}
+  .cform .field{width:100%}
+  .cform .btn{margin-top:6px;width:100%}
   .build{height:260vh}
 }
+@media (max-width:380px){.show h1{font-size:2.125rem}}
+@media (max-width:340px){#show-prev,#show-next{display:none}}
 @media (hover:none),(pointer:coarse),(max-width:1023px){.build{height:260vh}}
 /* short landscape phones: the story does not fit a pinned screen, so it is told in full */
 @media (max-height:520px){
@@ -216,14 +260,14 @@ html.a11y-still .pan__track a{width:min(74vw,320px);scroll-snap-align:start}
   .steps li h3,.steps li p{opacity:1!important}
 }
 @media (prefers-reduced-motion:reduce){
-  .hero h1,.hero p,.hero__act{opacity:1;transform:none}
-  .hero__copy{opacity:1!important;transform:none!important}
+  .show h1,.show__copy p,.show__act{opacity:1;transform:none}
+  .tick[aria-current="true"] i{transform:scaleX(1)}
   .build{height:auto}
   .build__pin{position:static;height:auto;padding-block:80px}
   .steps li{display:block!important}
   .steps li h3,.steps li p{opacity:1!important}
 }
-html.a11y-still .hero__copy{opacity:1!important;transform:none!important}
+html.a11y-still .tick[aria-current="true"] i{transform:scaleX(1)}
 html.a11y-still .build{height:auto}
 html.a11y-still .build__pin{position:static;height:auto;padding-block:80px}
 html.a11y-still .steps li{display:block!important}
@@ -232,20 +276,37 @@ html.a11y-still .steps li h3,html.a11y-still .steps li p{opacity:1!important}
 </head>
 <body class="no-js" data-page="home">
 <main id="main">
-  <section class="hero" id="hero" data-sp="top" aria-labelledby="hero-h">
-    <div class="wrap hero__copy">
+  <section class="show" id="hero" aria-labelledby="hero-h">
+    <div class="show__slides" role="region" aria-roledescription="מצגת" aria-label="צילומי השראה לקווי אור">
+      <figure class="slide is-on" role="group" aria-roledescription="שקופית" aria-label="1 מתוך 5" data-t="מטבח" data-href="projects.html#idea-1"><img src="assets/img/stock/_KfmNN0dJLI.jpg" alt="מטבח בהיר עם קו אור רציף מתחת לארונות" fetchpriority="high" style="object-position:50% 62%"></figure>
+      <figure class="slide" role="group" aria-roledescription="שקופית" aria-label="2 מתוך 5" aria-hidden="true" data-t="מעקה מואר" data-href="projects.html#idea-4"><img decoding="async" data-src="assets/img/stock/HU66Wc_71Vs.jpg" alt="מעקה מדרגות עם קו אור חבוי לאורכו"></figure>
+      <figure class="slide" role="group" aria-roledescription="שקופית" aria-label="3 מתוך 5" aria-hidden="true" data-t="גופים לינאריים תלויים" data-href="projects.html#idea-5"><img decoding="async" data-src="assets/img/stock/KYJHufdN2Nk.jpg" alt="גופי תאורה לינאריים תלויים מתקרת עץ"></figure>
+      <figure class="slide" role="group" aria-roledescription="שקופית" aria-label="4 מתוך 5" aria-hidden="true" data-t="מדרגות" data-href="projects.html#idea-2"><img decoding="async" data-src="assets/img/stock/gNOE-4kcs-0.jpg" alt="מדרגות עם אור רך מתחת לכל מדרך"></figure>
+      <figure class="slide" role="group" aria-roledescription="שקופית" aria-label="5 מתוך 5" aria-hidden="true" data-t="חזיתות וקווי גג" data-href="projects.html#idea-6"><img decoding="async" data-src="assets/img/stock/FmemkJ1k0JE.jpg" alt="קו אור חם לאורך קו הגג של בית, בשעת ערב" style="object-position:30% 40%"></figure>
+    </div>
+    <div class="wrap show__copy">
       <p class="eyebrow">פסי לד · פרופילי אלומיניום · שנאים</p>
       <h1 id="hero-h">תאורת לד <b>מדויקת</b>,<br>מהצ׳יפ ועד ההתקנה.</h1>
       <p>חנות ובית מלאכה לתאורת לד בתלפיות, ירושלים. מוצרים במחירים שקופים, תכנון אישי וליווי של הנדסאי חשמל.</p>
-      <div class="hero__act">
+      <div class="show__act">
         <a class="btn btn--pale" href="shop.html">לחנות המוצרים <svg class="arr" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 9H3M7 5L3 9l4 4"/></svg></a>
-        <a class="btn btn--ghost-l" id="consult" href="#" target="_blank" rel="noopener">ייעוץ בוואטסאפ</a>
+        <a class="btn btn--ghost-l" id="hero-wa" href="#" target="_blank" rel="noopener">ייעוץ בוואטסאפ</a>
       </div>
     </div>
-    <div class="stage" role="img" aria-label="פרופיל אלומיניום עם פס לד דולק">
-      <div class="wall"></div>
-      <div class="beam"></div>
-      <div class="profile"><div class="profile__top"></div><div class="profile__face"><div class="diffuser"><i></i></div></div></div>
+    <!-- the idea being shown: at the foot of the hero on wide screens, at its top on phones (one of the two is displayed) -->
+    <p class="show__now show__now--top" aria-live="off"><span class="show__tag">השראה</span><a href="projects.html#idea-1"><span data-title>מטבח</span><span class="sr">, לרעיון המלא</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8H3M6 4.5L2.5 8 6 11.5"/></svg></a></p>
+    <div class="show__bar">
+      <div class="wrap">
+        <p class="show__now" aria-live="off"><span class="show__tag">השראה</span><a href="projects.html#idea-1"><span data-title>מטבח</span><span class="sr">, לרעיון המלא</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8H3M6 4.5L2.5 8 6 11.5"/></svg></a></p>
+        <div class="ticks" role="group" aria-label="בחירת צילום">
+          <button class="tick" type="button" aria-label="צילום 1: מטבח" aria-current="true"><i></i></button><button class="tick" type="button" aria-label="צילום 2: מעקה מואר" aria-current="false"><i></i></button><button class="tick" type="button" aria-label="צילום 3: גופים לינאריים תלויים" aria-current="false"><i></i></button><button class="tick" type="button" aria-label="צילום 4: מדרגות" aria-current="false"><i></i></button><button class="tick" type="button" aria-label="צילום 5: חזיתות וקווי גג" aria-current="false"><i></i></button>
+        </div>
+        <div class="show__ctl">
+          <button class="rnd" id="show-pause" type="button" aria-label="עצירת המצגת"><svg class="i-pause" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><rect x="4" y="3" width="3.2" height="12" rx="1"/><rect x="10.8" y="3" width="3.2" height="12" rx="1"/></svg><svg class="i-play" viewBox="0 0 18 18" fill="currentColor" aria-hidden="true"><path d="M5 3.2v11.6L15 9z"/></svg></button>
+          <button class="rnd" id="show-prev" type="button" aria-label="הצילום הקודם"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 9h12M11 5l4 4-4 4"/></svg></button>
+          <button class="rnd" id="show-next" type="button" aria-label="הצילום הבא"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 9H3M7 5L3 9l4 4"/></svg></button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -254,6 +315,27 @@ html.a11y-still .steps li h3,html.a11y-still .steps li p{opacity:1!important}
       <div class="f rv"><b data-count="2012" data-from="1990">2012</b><span>שנת הייסוד של לד סנטר בע״מ</span></div>
       <div class="f rv"><b data-count="15" data-suffix="+">15+</b><span>שנות ניסיון בתכנון, ייצור והתקנת תאורה</span></div>
       <div class="f rv"><b data-count="4" data-from="0">4</b><span>תחומי שירות: מכירה, תכנון, תיקונים וליווי פרויקטים</span></div>
+    </div>
+  </section>
+
+  <section class="duo duo--cross duo--about" aria-labelledby="about-h">
+    <div class="duo__media">
+      <img decoding="async" src="assets/img/stock/Z8z_CbZxJ6U.jpg" alt="ספסל אבן מעוגל עם קו אור חם מתחתיו, בלילה" loading="lazy" style="object-position:50% 50%">
+      <span class="show__tag duo__tag">השראה</span>
+      <div class="giant giant--light" aria-hidden="true"><span class="giant__k">אודות</span> <span class="giant__l"><span>LED CENTER</span></span> <span class="giant__y"><i></i>מאז <b>2012</b></span></div>
+    </div>
+    <div class="wrap duo__wrap">
+      <div class="duo__text">
+        <h2 class="giant giant--ink" id="about-h"><span class="giant__k">אודות</span> <span class="giant__l"><span>LED CENTER</span></span> <span class="giant__y"><i></i>מאז <b>2012</b></span></h2>
+        <p class="lead rv">יהודה שילו, הנדסאי חשמל וחשמלאי מוסמך, מלווה כל לקוח מהבחירה של הפס ועד התקנה שעובדת.</p>
+        <ol class="pts">
+          <li class="rv"><span class="pts__n" aria-hidden="true">01</span><b>ייעוץ ותכנון אישי</b><span class="sr">:</span><span class="pts__d">גוון, עוצמה וזווית אור לכל חלל</span></li>
+          <li class="rv"><span class="pts__n" aria-hidden="true">02</span><b>מלאי במקום</b><span class="sr">:</span><span class="pts__d">פסים, פרופילים ושנאים מהמדף</span></li>
+          <li class="rv"><span class="pts__n" aria-hidden="true">03</span><b>סדנת תיקונים</b><span class="sr">:</span><span class="pts__d">מתקנים גופי תאורה ושנאים במקום להחליף</span></li>
+          <li class="rv"><span class="pts__n" aria-hidden="true">04</span><b>ליווי פרויקטים</b><span class="sr">:</span><span class="pts__d">לקבלנים ולאדריכלים, עד המסירה</span></li>
+        </ol>
+        <a class="btn btn--frame rv" href="about.html">עוד על לד סנטר <svg class="arr" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 9H3M7 5L3 9l4 4"/></svg></a>
+      </div>
     </div>
   </section>
 
@@ -289,70 +371,51 @@ html.a11y-still .steps li h3,html.a11y-still .steps li p{opacity:1!important}
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="cats-h">
+  <section class="sec shop" aria-labelledby="shop-h">
     <div class="wrap">
       <div class="head">
-        <div><p class="eyebrow rv">הקטגוריות</p><h2 id="cats-h" class="h-l rv" style="font-weight:400">כל הרכיבים לקו אור מושלם</h2></div>
-        <a class="link rv" href="shop.html">לכל המוצרים <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8H3M6 4.5L2.5 8 6 11.5"/></svg></a>
+        <div>
+          <p class="eyebrow rv">החנות</p>
+          <h2 id="shop-h" class="h-l rv">כל הרכיבים לקו אור מושלם</h2>
+          <ul class="perks rv"><li>מחירים כולל מע״מ</li><li>הזמנה בוואטסאפ</li><li>איסוף מהחנות או משלוח בתיאום</li></ul>
+        </div>
+        <a class="btn btn--frame rv" href="shop.html">לכל המוצרים <svg class="arr" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 9H3M7 5L3 9l4 4"/></svg></a>
       </div>
       <div class="cats">
-        <a class="cat rv" data-sp="view" href="shop.html?cat=strip"><div class="cat__img"><img src="assets/img/stock/_KfmNN0dJLI.jpg" alt="מטבח עם פס לד מתחת לארונות" loading="lazy" style="object-position:50% 58%"></div><div class="cat__b"><div><h3>פסי לד</h3><p>מאור רך לתאורה סמויה ועד תאורה ראשית</p></div><small data-cat-count="strip">7 דגמים</small></div></a>
-        <a class="cat rv" data-sp="view" href="shop.html?cat=profile"><div class="cat__img"><img src="assets/img/stock/vqYCt4DeP-Q.jpg" alt="קווי אור בפרופילים שקועים בתקרה" loading="lazy" style="object-position:50% 40%"></div><div class="cat__b"><div><h3>פרופילי אלומיניום</h3><p>גלויים, שקועים, פינתיים וגמישים</p></div><small data-cat-count="profile">15 דגמים</small></div></a>
-        <a class="cat rv" data-sp="view" href="shop.html?cat=acc"><div class="cat__img"><img src="assets/img/stock/KYJHufdN2Nk.jpg" alt="גופי תאורה לינאריים תלויים" loading="lazy"></div><div class="cat__b"><div><h3>שנאים ואביזרים</h3><p>Mean Well, אמצעי תליה ודבקי 3M</p></div><small data-cat-count="acc">5 פריטים</small></div></a>
+        <a class="cat rv" href="shop.html?cat=strip">
+          <span class="cat__n" aria-hidden="true">01</span>
+          <span class="cat__t">פסי לד</span>
+          <span class="cat__d">מאור רך לתאורה סמויה ועד תאורה ראשית</span>
+          <span class="cat__f"><span class="cat__c" data-cat-count="strip">7 דגמים</span><span class="cat__p"><small>החל מ-</small><b data-cat-from="strip">64.90 ₪</b></span><span class="cat__go" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 9H3M7 5L3 9l4 4"/></svg></span></span>
+        </a>
+        <a class="cat rv" href="shop.html?cat=profile">
+          <span class="cat__n" aria-hidden="true">02</span>
+          <span class="cat__t">פרופילי אלומיניום</span>
+          <span class="cat__d">גלויים, שקועים, פינתיים וגמישים, עם כיסוי פוליקרבונט</span>
+          <span class="cat__f"><span class="cat__c" data-cat-count="profile">15 דגמים</span><span class="cat__p"><small>החל מ-</small><b data-cat-from="profile">59 ₪</b></span><span class="cat__go" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 9H3M7 5L3 9l4 4"/></svg></span></span>
+        </a>
+        <a class="cat rv" href="shop.html?cat=acc">
+          <span class="cat__n" aria-hidden="true">03</span>
+          <span class="cat__t">שנאים ואביזרים</span>
+          <span class="cat__d">שנאי Mean Well, אמצעי תליה ודבקי 3M</span>
+          <span class="cat__f"><span class="cat__c" data-cat-count="acc">5 פריטים</span><span class="cat__p"><small>החל מ-</small><b data-cat-from="acc">29.50 ₪</b></span><span class="cat__go" aria-hidden="true"><svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 9H3M7 5L3 9l4 4"/></svg></span></span>
+        </a>
       </div>
-    </div>
-  </section>
-
-  <section class="pan" id="pan" data-sp="pin" aria-labelledby="pan-h">
-    <div class="pan__pin">
-      <div class="wrap pan__head">
-        <div><p class="eyebrow">רעיונות</p><h2 id="pan-h" class="h-l" style="font-weight:400;margin-top:14px">איפה שמים קו אור</h2><p class="muted" style="font-size:0.875rem;margin-top:8px">צילומי השראה</p></div>
-        <a class="link" href="projects.html">לכל הרעיונות <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8H3M6 4.5L2.5 8 6 11.5"/></svg></a>
+      <div class="shop__pop">
+        <h3 id="pop-h" class="shop__h rv">הנמכרים ביותר</h3>
+        <div class="pgrid" id="popular"></div>
       </div>
-      <div class="pan__track" id="track">
-        <a href="projects.html"><img src="assets/img/stock/_KfmNN0dJLI.jpg" alt="מטבח עם קו אור מתחת לארונות" loading="lazy" style="object-position:50% 58%"><span>מטבח</span></a>
-        <a href="projects.html"><img src="assets/img/stock/gNOE-4kcs-0.jpg" alt="מדרגות עם פס לד מתחת לכל מדרך" loading="lazy"><span>מדרגות</span></a>
-        <a href="projects.html"><img src="assets/img/stock/Z8z_CbZxJ6U.jpg" alt="קיר מעוגל עם קו אור" loading="lazy"><span>קירות מעוגלים</span></a>
-        <a href="projects.html"><img src="assets/img/stock/HU66Wc_71Vs.jpg" alt="מעקה עם פרופיל לד" loading="lazy"><span>מעקות</span></a>
-        <a href="projects.html"><img src="assets/img/stock/KYJHufdN2Nk.jpg" alt="גופים לינאריים תלויים" loading="lazy"><span>גופים תלויים</span></a>
-        <a href="projects.html"><img src="assets/img/stock/FmemkJ1k0JE.jpg" alt="חזית מוארת בקו אור" loading="lazy" style="object-position:40% 50%"><span>חזיתות</span></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" aria-labelledby="why-h">
-    <div class="wrap">
-      <div class="head">
-        <div><p class="eyebrow rv">למה לד סנטר</p><h2 id="why-h" class="h-l rv" style="font-weight:400">לא רק חנות</h2></div>
-        <p class="lead rv">יהודה שילו, הנדסאי חשמל וחשמלאי מוסמך, מלווה כל לקוח מהבחירה של הפס ועד התקנה שעובדת.</p>
-      </div>
-      <div class="why">
-        <div class="rv"><i></i><h3>ייעוץ ותכנון אישי</h3><p>גוון, עוצמה וזווית אור לכל חלל, יחד עם האדריכל או המעצב.</p></div>
-        <div class="rv"><i></i><h3>מלאי במקום</h3><p>פסים, פרופילים ושנאים מהמדף, במחירים שקופים.</p></div>
-        <div class="rv"><i></i><h3>סדנת תיקונים</h3><p>מתקנים גופי תאורה ושנאים במקום להחליף.</p></div>
-        <div class="rv"><i></i><h3>ליווי פרויקטים</h3><p>הצעות מחיר לקבלנים ולאדריכלים, וליווי עד המסירה.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec sec--panel" aria-labelledby="pop-h">
-    <div class="wrap">
-      <div class="head">
-        <div><p class="eyebrow rv">הנמכרים ביותר</p><h2 id="pop-h" class="h-l rv" style="font-weight:400">מוצרים פופולריים</h2></div>
-        <a class="link rv" href="shop.html">לחנות <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8H3M6 4.5L2.5 8 6 11.5"/></svg></a>
-      </div>
-      <div class="pgrid" id="popular"></div>
     </div>
   </section>
 
   <section class="sec" aria-labelledby="rev-h">
     <div class="wrap">
       <div class="head">
-        <div><p class="eyebrow rv">ביקורות</p><h2 id="rev-h" class="h-l rv" style="font-weight:400">מה הלקוחות אומרים</h2></div>
+        <div><p class="eyebrow rv">ביקורות</p><h2 id="rev-h" class="h-l rv">מה הלקוחות אומרים</h2></div>
         <div class="g-score rv"><b style="font-weight:300">5.0</b><div><span class="stars-host"></span><a class="muted" data-maps href="#" target="_blank" rel="noopener" style="text-decoration:underline">מכל הביקורות בגוגל</a></div></div>
       </div>
-      <div class="reviews" id="reviews"></div>
     </div>
+    <div class="rmarq" id="reviews"></div>
   </section>
 
   <section class="sec" style="padding-top:0" aria-labelledby="visit-h">
@@ -361,7 +424,7 @@ html.a11y-still .steps li h3,html.a11y-still .steps li p{opacity:1!important}
       <div class="visit">
         <div class="visit__card rv">
           <p class="eyebrow">ביקור בחנות</p>
-          <h2 id="visit-h" class="h-l" style="font-weight:400">רחוב רבקה 19, תלפיות</h2>
+          <h2 id="visit-h" class="h-l">רחוב רבקה 19, תלפיות</h2>
           <p class="muted">בתוך מתחם ביג אמפוריו, ירושלים</p>
           <p data-open-now style="margin-top:14px"></p>
           <dl class="visit__rows">
@@ -375,27 +438,64 @@ html.a11y-still .steps li h3,html.a11y-still .steps li p{opacity:1!important}
       </div>
     </div>
   </section>
+
+  <section class="consult" aria-labelledby="consult-h">
+    <div class="consult__glow rv" aria-hidden="true"><i></i></div>
+    <div class="consult__mark" aria-hidden="true">LED CENTER</div>
+    <div class="consult__clients">
+      <p class="consult__cl rv">עסקים שסומכים על האור שלנו</p>
+      <div class="marquee" id="clients"></div>
+    </div>
+    <div class="wrap">
+      <h2 id="consult-h" class="rv">לקבלת ייעוץ תאורה</h2>
+      <p class="lead rv">ספרו ליהודה מה אתם מאירים, ותקבלו תכנון, רכיבים והצעת מחיר. ההודעה נפתחת בוואטסאפ, מוכנה לשליחה.</p>
+      <form class="cform rv" id="cform" novalidate>
+        <fieldset class="cform__what">
+          <legend>מה מאירים? <span>לא חובה</span></legend>
+          <div class="cform__chips">
+            <label><input type="radio" name="what" value="מטבח"><span>מטבח</span></label>
+            <label><input type="radio" name="what" value="סלון וחדרים"><span>סלון וחדרים</span></label>
+            <label><input type="radio" name="what" value="פרגולה וחוץ"><span>פרגולה וחוץ</span></label>
+            <label><input type="radio" name="what" value="חנות או משרד"><span>חנות או משרד</span></label>
+          </div>
+        </fieldset>
+        <div class="cform__row">
+          <div class="field"><label for="c-name">שם</label><input class="input" id="c-name" name="name" type="text" autocomplete="name" required aria-describedby="c-name-e"><span class="field__err" id="c-name-e" hidden>נא לכתוב שם</span></div>
+          <div class="field"><label for="c-phone">טלפון</label><input class="input" id="c-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required aria-describedby="c-phone-e"><span class="field__err" id="c-phone-e" hidden>נא לכתוב מספר טלפון</span></div>
+          <button class="btn btn--red" type="submit">שליחה בוואטסאפ</button>
+        </div>
+      </form>
+      <p class="cform__note rv">הפרטים משמשים רק לטיפול בפנייה שלכם. <a href="terms.html">פרטיות</a></p>
+      <ul class="consult__facts rv">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><a href="tel:+972722500885">072-2500885</a></li>
+        <li data-open-now></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><a data-maps href="#" target="_blank" rel="noopener">רחוב רבקה 19, תלפיות</a></li>
+      </ul>
+    </div>
+  </section>
 </main>
 <script src="assets/js/products.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
 document.querySelectorAll('[data-cat-count]').forEach(e=>{const k=e.dataset.catCount;e.textContent=PRODUCTS.filter(p=>p.cat===k).length+(k==='acc'?' פריטים':' דגמים')});
+/* each category's lowest price, including VAT */
+document.querySelectorAll('[data-cat-from]').forEach(e=>{const ps=PRODUCTS.filter(p=>p.cat===e.dataset.catFrom&&p.price!=null).map(p=>gross(p.price));if(ps.length)e.textContent=fmt(Math.min(...ps))});
 document.getElementById('popular').innerHTML=['strip-14-4-180','strip-28-samsung','profile-skinny-60','profile-corner'].map(id=>cardHTML(findProduct(id))).join('');
-document.getElementById('reviews').innerHTML=REVIEWS.map(reviewHTML).join('');
+reviewsRow(document.getElementById('reviews'));
+clientsRow(document.getElementById('clients'));
 document.querySelector('.stars-host').innerHTML=STARS;
 document.getElementById('hours-host').innerHTML=HOURS_HTML;
 document.getElementById('waze').href=SITE.WAZE;document.getElementById('gmaps').href=SITE.MAPS;
-document.getElementById('consult').href='https://wa.me/'+SITE.WA+'?text='+encodeURIComponent('שלום, אשמח לייעוץ על תאורת לד');
+document.getElementById('hero-wa').href='https://wa.me/'+SITE.WA+'?text='+encodeURIComponent('שלום, אשמח לייעוץ על תאורת לד');
 (()=>{const d=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Jerusalem',weekday:'short'}).format(new Date());const i=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(d);document.querySelectorAll('#hours-host [data-day="'+i+'"]').forEach(e=>e.classList.add('is-today'))})();
 
-/* header settles to light after the hero (the hero's height is measured on load and resize, not on every scroll) */
-const hdr=document.querySelector('.hdr'),hero=document.getElementById('hero');
-let heroH=hero.offsetHeight;const past=()=>hdr.classList.toggle('past',scrollY>heroH-80);
-addEventListener('scroll',past,{passive:true});addEventListener('resize',()=>{heroH=hero.offsetHeight;past()});addEventListener('load',()=>{heroH=hero.offsetHeight;past()});past();
+const root=document.documentElement;
+const calm=()=>matchMedia('(prefers-reduced-motion: reduce)').matches||root.classList.contains('a11y-still');
+
 /* hero intro */
 (()=>{
-  const h1=document.getElementById('hero-h'),root=document.documentElement;
-  if(!root.classList.contains('intro')){hero.classList.add('on');return}
+  const h1=document.getElementById('hero-h');
+  if(!root.classList.contains('intro')) return;
   h1.setAttribute('aria-label',[...h1.childNodes].map(n=>n.nodeName==='BR'?' ':n.textContent).join('').replace(/ +/g,' ').trim());
   let i=0;const wrap=t=>t.split(/( +)/).map(x=>x.trim()?`<span class="w" aria-hidden="true"><span style="--i:${i++}">${x}</span></span>`:x).join('');
   h1.innerHTML=[...h1.childNodes].map(n=>n.nodeType===3?wrap(n.textContent):n.nodeName==='B'?`<b>${wrap(n.textContent)}</b>`:n.outerHTML).join('');
@@ -403,31 +503,118 @@ addEventListener('scroll',past,{passive:true});addEventListener('resize',()=>{he
   const ws=[...h1.querySelectorAll('.w')];ws.forEach((w,k)=>{if(k&&/^[,.]$/.test(w.textContent)){ws[k-1].firstChild.insertAdjacentHTML('beforeend',`<span style="font-weight:300">${w.textContent}</span>`);w.remove()}});
   h1.classList.add('split');
   /* starts even if the page opened in a background tab, where animation frames do not fire */
-  let started=false;const start=()=>{if(started)return;started=true;root.classList.add('intro-go');
-    setTimeout(()=>{hero.classList.add('on');setTimeout(()=>hero.classList.add('lit'),650)},1500);
-    setTimeout(()=>root.classList.remove('intro','intro-go'),3600)};
+  let started=false;const start=()=>{if(started)return;started=true;root.classList.add('intro-go');setTimeout(()=>root.classList.remove('intro','intro-go'),3600)};
   requestAnimationFrame(start);setTimeout(start,200);
 })();
 
-/* the build story: four steps across the pinned scroll */
-const build=document.getElementById('build'),scene=document.getElementById('scene'),steps=[...document.querySelectorAll('#steps li')];
-function setStep(p){const s=Math.min(4,1+Math.floor(p*4.0001));scene.dataset.step=s;steps.forEach(li=>li.classList.toggle('is-on',+li.dataset.s===s))}
-build.addEventListener('sp',e=>setStep(e.detail));setStep(0);
+/* hero photographs: a new one every 6.5 seconds. It pauses with the pause button, while a keyboard user is
+   inside the hero, while the mouse is on the controls, in a background tab, and from the start for visitors
+   who asked for less motion. */
+(()=>{
+  const show=document.getElementById('hero'),slides=[...show.querySelectorAll('.slide')],ticks=[...show.querySelectorAll('.tick')];
+  const nows=[...show.querySelectorAll('.show__now')],links=[...show.querySelectorAll('.show__now a')],titles=[...show.querySelectorAll('[data-title]')];
+  const pb=document.getElementById('show-pause');
+  const DUR=6500;
+  let i=0,user=calm(),hold=false,kb=false,left=DUR,t0=0,timer=0;
+  const load=s=>{const im=s.querySelector('img[data-src]');if(im){im.src=im.dataset.src;im.removeAttribute('data-src')}};
+  const paused=()=>user||hold||kb||document.hidden;
+  function halt(){if(!timer)return;clearTimeout(timer);timer=0;left=Math.max(0,left-(performance.now()-t0))}
+  function run(){if(timer||paused())return;t0=performance.now();timer=setTimeout(()=>{timer=0;go(i+1)},left)}
+  function sync(){const p=paused();show.classList.toggle('is-paused',p);p?halt():run();
+    pb.classList.toggle('is-play',user);pb.setAttribute('aria-label',user?'הפעלת המצגת':'עצירת המצגת');nows.forEach(n=>n.setAttribute('aria-live',user?'polite':'off'))}
+  function go(n){
+    halt();left=DUR;
+    const prev=slides[i];i=(n+slides.length)%slides.length;const s=slides[i];
+    load(s);load(slides[(i+1)%slides.length]);
+    if(prev!==s){prev.classList.add('is-out');setTimeout(()=>prev.classList.remove('is-out'),1300)}
+    slides.forEach((x,k)=>{x.classList.toggle('is-on',k===i);x.setAttribute('aria-hidden',String(k!==i))});
+    ticks.forEach((t,k)=>t.setAttribute('aria-current',String(k===i)));
+    titles.forEach(t=>t.textContent=s.dataset.t);links.forEach(a=>a.href=s.dataset.href);
+    sync();
+  }
+  pb.addEventListener('click',()=>{user=!user;sync()});
+  document.getElementById('show-prev').addEventListener('click',()=>go(i-1));
+  document.getElementById('show-next').addEventListener('click',()=>go(i+1));
+  ticks.forEach((t,k)=>t.addEventListener('click',()=>go(k)));
+  const bar=show.querySelector('.show__bar');
+  bar.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hold=true;sync()}});
+  bar.addEventListener('pointerleave',()=>{hold=false;sync()});
+  show.addEventListener('focusin',e=>{kb=e.target.matches(':focus-visible');sync()});
+  show.addEventListener('focusout',e=>{if(!show.contains(e.relatedTarget)){kb=false;sync()}});
+  document.addEventListener('visibilitychange',sync);
+  /* "stop animations" in the accessibility menu pauses the show too */
+  addEventListener('resize',()=>{if(calm()&&!user){user=true;sync()}});
+  /* the other photos load as soon as the first one is in, so a change never shows an empty frame */
+  const first=slides[0].querySelector('img'),rest=()=>slides.forEach(load);
+  first.complete?rest():first.addEventListener('load',rest,{once:true});
+  addEventListener('load',rest);
+  sync();
+})();
 
-/* ideas: how far the row travels sideways while pinned on desktop (RTL, so it moves right).
-   On phones and tablets the row is a swipe carousel and none of this applies. */
-const pan=document.getElementById('pan'),track=document.getElementById('track'),panPin=pan.firstElementChild;
-const pinned=()=>getComputedStyle(panPin).position==='sticky';
-function dist(){pan.style.setProperty('--dist',pinned()?Math.max(0,track.scrollWidth-panPin.clientWidth)+'px':'0px')}
-addEventListener('resize',dist);addEventListener('load',dist);dist();
-/* keyboard: tabbing to a card that is off to the side scrolls the page to where that card is in view */
-track.addEventListener('focusin',e=>{
-  const a=e.target.closest('a'),d=parseFloat(pan.style.getPropertyValue('--dist'))||0;
-  if(!a||!d||!pinned()) return;
-  const r=a.getBoundingClientRect(),p=Math.min(1,Math.max(0,(pan._p||0)+(innerWidth/2-(r.left+r.width/2))/d));
-  const top=pan.getBoundingClientRect().top+scrollY-(parseFloat(getComputedStyle(panPin).top)||0)+p*(pan.offsetHeight-panPin.offsetHeight);
-  scrollTo({top:Math.round(top),behavior:'instant'});
+
+/* the build story as one continuous film. The scroll sets a target; every frame the film eases toward it,
+   so the jumps of a mouse wheel play as smooth motion. Every part is drawn from that one number:
+   chip (0-.25), strip (.25-.5), profile (.5-.75), installation and light (.75-1). */
+(()=>{
+  const build=document.getElementById('build'),scene=document.getElementById('scene'),pin=build.firstElementChild,steps=[...document.querySelectorAll('#steps li')];
+  const q=s=>scene.querySelector(s),solo=q('.solo'),halo=q('.halo'),pcb=q('.pcb'),housing=q('.housing'),cover=q('.cover'),rig=q('.rig'),ceiling=q('.ceiling'),cone=q('.cone');
+  const chips=[...scene.querySelectorAll('.chips rect')],mid=(chips.length-1)/2;
+  const seg=(p,a,b)=>Math.min(1,Math.max(0,(p-a)/(b-a)));
+  const ease=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+  const f=n=>n.toFixed(3);
+  let target=0,cur=-1,raf=0,last=0,lit=false,step=0;
+  function draw(p){
+    /* 1. the chip grows in and glows */
+    const a=ease(seg(p,-.08,.1)),merge=ease(seg(p,.2,.3)); /* already glowing when the section arrives */
+    solo.style.opacity=f(a*(1-merge));solo.style.transform=`scale(${f(.55+.45*a)})`;
+    halo.style.opacity=f(a*(1-ease(seg(p,.46,.58))));
+    /* 2. the board stretches out from the middle, and the chips light from the middle outward */
+    const b=ease(seg(p,.18,.36));
+    pcb.style.opacity=f(Math.min(1,b*3));pcb.style.transform=`scaleX(${(.06+.94*b).toFixed(4)})`;
+    chips.forEach((c,i)=>{const d=Math.abs(i-mid)/mid;c.style.opacity=f(ease(seg(p,.24+d*.18,.29+d*.18)))});
+    /* 3. the profile closes around it: the housing from above, the cover from below */
+    const h=ease(seg(p,.5,.62)),cv=ease(seg(p,.6,.72));
+    housing.style.opacity=f(h);housing.style.transform=`translateY(${(-60*(1-h)).toFixed(1)}px)`;
+    cover.style.opacity=f(cv*.95);cover.style.transform=`translateY(${(40*(1-cv)).toFixed(1)}px)`;
+    /* 4. it rises into the ceiling, then the light switches on, with one short flicker */
+    const r=ease(seg(p,.76,.88)),on=ease(seg(p,.88,.97));
+    rig.style.transform=`translateY(${(-150*r).toFixed(1)}px)`;
+    ceiling.style.opacity=f(ease(seg(p,.76,.84)));
+    cone.style.opacity=f(on*.9);
+    if(on>.08&&!lit){lit=true;if(!calm()&&cone.animate)cone.animate([{opacity:0},{opacity:.85},{opacity:.12},{opacity:.9},{opacity:.35},{opacity:.9}],{duration:650,easing:'linear'})}
+    else if(on<.01) lit=false;
+    build.style.setProperty('--pe',f(p));
+    const s=Math.min(4,1+Math.floor(p*4.0001));
+    if(s!==step){step=s;steps.forEach(li=>li.classList.toggle('is-on',+li.dataset.s===s))}
+  }
+  function tick(t){
+    const dt=last?Math.min(64,t-last):16;last=t;
+    cur+=(target-cur)*(1-Math.exp(-dt/120));
+    if(Math.abs(target-cur)<.0005) cur=target;
+    draw(cur);
+    if(cur!==target) raf=requestAnimationFrame(tick); else {raf=0;last=0}
+  }
+  const pinned=()=>getComputedStyle(pin).position==='sticky';
+  build.addEventListener('sp',e=>{
+    target=e.detail;
+    /* unpinned (phones in landscape, reduced motion, "stop animations"): the finished scene, no easing */
+    if(cur<0||calm()||!pinned()){cancelAnimationFrame(raf);raf=0;cur=target;draw(cur);return}
+    if(!raf) raf=requestAnimationFrame(tick);
+  });
+  draw(0);cur=0;
+})();
+
+/* consult strip: checks the two fields, then opens WhatsApp with the message ready */
+document.getElementById('cform').addEventListener('submit',e=>{
+  e.preventDefault();
+  let bad=null;
+  [['c-name','c-name-e',v=>v.trim().length>1],['c-phone','c-phone-e',v=>v.replace(/\D/g,'').length>=9]].forEach(([id,er,ok])=>{const el=document.getElementById(id),good=ok(el.value);document.getElementById(er).hidden=good;el.setAttribute('aria-invalid',String(!good));if(!good&&!bad)bad=el});
+  if(bad){bad.focus();return}
+  const v=id=>document.getElementById(id).value.trim(),what=(document.querySelector('#cform input[name="what"]:checked')||{}).value;
+  window.open('https://wa.me/'+SITE.WA+'?text='+encodeURIComponent(['שלום יהודה, אשמח לייעוץ תאורה.',what&&`מאירים: ${what}`,`שם: ${v('c-name')}`,`טלפון: ${v('c-phone')}`].filter(Boolean).join('\n')),'_blank','noopener');
 });
+document.querySelector('#cform .btn').insertAdjacentHTML('afterbegin',ICONS.wa.replace('<svg','<svg fill="currentColor"'));
+
 refreshScroll&&refreshScroll();
 observeReveal();
 </script>

@@ -3,30 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
 <title>מוצר | לד סנטר</title>
 <meta name="description" content="פרטי מוצר, מחיר והזמנה בוואטסאפ מלד סנטר, תלפיות ירושלים.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#eef0f2">
 <meta property="og:type" content="product"><meta property="og:site_name" content="לד סנטר"><meta property="og:title" content="מוצרי לד סנטר"><meta property="og:description" content="פסי לד, פרופילי אלומיניום ושנאים. הזמנה בוואטסאפ ואיסוף מהחנות בתלפיות, ירושלים."><meta property="og:image" content="https://yehonatan2807-rgb.github.io/led-center-preview/share.jpg"><meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
 <link rel="preload" href="assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/heebo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
+<!-- the catalogue loads first, so the product's name is written into the title band as the page is read (no jump) -->
+<script src="assets/js/products.js"></script>
 <style>
-#pd:empty{min-height:100vh}
-.pd{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(32px,5vw,80px);padding:clamp(36px,4vw,56px) 0 clamp(80px,9vw,130px)}
-.gal__main{aspect-ratio:1;background:var(--tile);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-.gal__main svg,.gal__main img{width:100%;height:100%;object-fit:cover}
-.gal__thumbs{display:flex;gap:10px;margin-top:10px}
-.gal__thumbs button{width:84px;height:84px;padding:0;border:1px solid var(--line);border-radius:var(--r);background:var(--tile);overflow:hidden;cursor:pointer}
-.gal__thumbs button[aria-pressed="true"]{border-color:var(--ink);outline:1px solid var(--ink)}
-.gal__thumbs svg,.gal__thumbs img{width:100%;height:100%;object-fit:cover}
-.gal__note{font-size:0.8125rem;color:var(--faint);margin-top:8px}
-.info h1{font-size:clamp(1.875rem,3.2vw,2.875rem);margin:10px 0 12px}
-.info .price{margin:22px 0 4px}
-.info .price b{font-size:2.25rem}
-.buy{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+#pd:empty{min-height:60vh}
+/* the product, without pictures: name and line in the dark title band, then price and ordering beside the specs */
+.pagehead h1{font-size:clamp(2rem,3.6vw,3.25rem);margin:10px 0 0}
+.pd{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(32px,5vw,80px);align-items:start;padding:clamp(36px,4vw,56px) 0 clamp(64px,7vw,100px)}
+.buybox .price b{font-size:clamp(2.25rem,3.4vw,3rem)}
+.buy{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
 .buy .qty{height:52px}
 .buy .qty button{height:50px;width:44px}
 .buy .btn{flex:1}
-.specs{margin-top:36px;border-top:1px solid var(--line)}
+.buybox__note{margin-top:16px;font-size:0.875rem;color:var(--muted);max-width:46ch}
+.specs{margin:0;border-top:1px solid var(--ink)}
 .specs div{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font-size:0.96875rem}
 .specs dt{color:var(--muted)}
 .specs dd{margin:0;font-weight:500;text-align:left}
@@ -36,15 +33,25 @@
 </style>
 </head>
 <body class="no-js" data-page="shop">
-<main id="main" class="wrap">
-  <nav class="crumbs" aria-label="פירורי לחם" style="padding-top:28px"><a href="index.html">דף הבית</a><span>/</span><a href="shop.html">חנות</a><span>/</span><a id="crumb-cat" href="shop.html"></a></nav>
-  <div class="pd" id="pd"></div>
-  <section aria-labelledby="rel-h" style="padding-bottom:clamp(80px,9vw,140px)">
+<main id="main">
+  <header class="pagehead"><div class="wrap">
+    <nav class="crumbs" aria-label="פירורי לחם"><a href="index.html">דף הבית</a><span>/</span><a href="shop.html">חנות</a><span>/</span><a id="crumb-cat" href="shop.html"></a></nav>
+    <div id="pd-head"></div>
+    <script>
+    (function(){
+      const p=findProduct(new URLSearchParams(location.search).get('id')),h=document.getElementById('pd-head'),c=document.getElementById('crumb-cat');
+      if(!p){c.textContent='מוצר לא נמצא';c.removeAttribute('href');h.innerHTML='<h1>המוצר לא נמצא</h1><p class="lead">ייתכן שהקישור ישן או שהמוצר הוסר מהקטלוג. אפשר לחפש אותו בחנות, או לשאול אותנו בוואטסאפ.</p>';return}
+      c.textContent=CATS[p.cat].name;c.href='shop.html?cat='+p.cat;
+      h.innerHTML=`<p class="eyebrow">${CATS[p.cat].name}${p.tag?` · ${p.tag}`:''}</p><h1>${p.name}</h1><p class="lead">${p.spec}.</p>`;
+    })();
+    </script>
+  </div></header>
+  <div class="wrap"><div class="pd" id="pd"></div></div>
+  <section class="wrap" aria-labelledby="rel-h" style="padding-bottom:clamp(80px,9vw,140px)">
     <div class="head"><div><p class="eyebrow">עוד מאותה קטגוריה</p><h2 id="rel-h" class="h-m" style="margin-top:12px">מוצרים קשורים</h2></div></div>
     <div class="pgrid" id="rel"></div>
   </section>
 </main>
-<script src="assets/js/products.js"></script>
 <script src="assets/js/site.js"></script>
 <script>
 const id=new URLSearchParams(location.search).get('id');
@@ -54,8 +61,7 @@ if(!p){
   /* no such product: say so, and keep the address out of search results, instead of showing a different product */
   document.title='המוצר לא נמצא | לד סנטר';
   head('meta',{name:'robots',content:'noindex'});
-  const c=document.getElementById('crumb-cat');c.textContent='מוצר לא נמצא';c.removeAttribute('href');
-  document.getElementById('pd').innerHTML=`<div class="info" style="grid-column:1/-1;padding-block:clamp(24px,4vw,56px)"><p class="eyebrow">חנות</p><h1>המוצר לא נמצא</h1><p class="lead">ייתכן שהקישור ישן או שהמוצר הוסר מהקטלוג. אפשר לחפש אותו בחנות, או לשאול אותנו בוואטסאפ.</p><div class="buy"><a class="btn" href="shop.html">לחנות</a><a class="btn btn--wa" href="https://wa.me/${SITE.WA}" target="_blank" rel="noopener">${ICONS.wa}שאלה בוואטסאפ</a></div></div>`;
+  document.getElementById('pd').innerHTML=`<div class="buy" style="grid-column:1/-1;margin:0"><a class="btn" href="shop.html">לחנות</a><a class="btn btn--wa" href="https://wa.me/${SITE.WA}" target="_blank" rel="noopener">${ICONS.wa}שאלה בוואטסאפ</a></div>`;
   document.querySelector('[aria-labelledby="rel-h"]').hidden=true;
 }else{
 const url='https://www.ledcenter.co.il/product.html?id='+encodeURIComponent(p.id);
@@ -64,7 +70,6 @@ document.title=p.name+' | לד סנטר';
 document.querySelector('meta[name=description]').content=desc;
 head('link',{rel:'canonical',href:url});
 head('meta',{property:'og:title',content:p.name+' | לד סנטר'});head('meta',{property:'og:description',content:desc});head('meta',{property:'og:url',content:url});
-const c=document.getElementById('crumb-cat');c.textContent=CATS[p.cat].name;c.href='shop.html?cat='+p.cat;
 const specs=[['קטגוריה',CATS[p.cat].name]];
 if(p.brand) specs.push(['יצרן',p.brand]);
 if(p.w) specs.push(['הספק',p.w+' וואט למטר']);
@@ -73,35 +78,21 @@ if(p.use) specs.push(['מתאים ל',p.use.join(', ')]);
 specs.push(['מחיר',p.price!=null?fmt(gross(p.price))+' כולל מע״מ':'לפי דגם, נשלח הצעה'],['זמינות','איסוף מהחנות בתלפיות, בתיאום']);
 const tip=p.cat==='strip'?'כל פס צריך שנאי בהספק ובמתח מתאימים. <a href="calculator.html">המחשבון</a> יחשב בשבילך כמה וואט צריך.':p.cat==='profile'?'הפרופיל מגיע עם כיסוי פוליקרבונט. לפרופיל שקוע כדאי להוסיף <a href="product.html?id=clip-steel">קליפס נירוסטה</a>.':'לא בטוחים איזה דגם מתאים? <a href="contact.html">שאלו אותנו</a> ונחזור אליכם.';
 document.getElementById('pd').innerHTML=`
-  <div class="gal">
-    <div class="gal__main" id="main-img">${drawProduct(p)}</div>
-    <div class="gal__thumbs">
-      <button type="button" aria-pressed="true" data-v="draw" aria-label="שרטוט המוצר">${drawProduct(p).replace(/<text[\s\S]*?<\/text>/g,'')}</button>
-      <button type="button" aria-pressed="false" data-v="photo" aria-label="תמונת המוצר"><img src="assets/img/products/${p.photo}.jpg" alt="" loading="lazy"></button>
-    </div>
-    <p class="gal__note">שרטוט להמחשה. בתמונה השנייה: תמונת המוצר.</p>
-  </div>
-  <div class="info">
-    <p class="eyebrow">${CATS[p.cat].name}</p>
-    <h1>${p.name}</h1>
-    <p class="lead">${p.spec}.</p>
-    ${p.price!=null?`<div class="price"><b class="num">${fmt(gross(p.price))}</b><small>כולל מע״מ</small></div>`:`<div class="price price--ask"><b style="font-size:1.5rem">מחיר לפי דגם</b><small>נשלח הצעת מחיר בוואטסאפ</small></div>`}
+  <div class="buybox">
+    ${p.price!=null?`<div class="price"><b class="num">${fmt(gross(p.price))}</b><small>כולל מע״מ</small></div>`:`<div class="price price--ask"><b style="font-size:1.75rem">מחיר לפי דגם</b><small>נשלח הצעת מחיר בוואטסאפ</small></div>`}
     <div class="buy">
       <div class="qty"><button type="button" id="dec" aria-label="הפחתת כמות">−</button><span id="q" aria-live="polite" aria-label="כמות">1</span><button type="button" id="inc" aria-label="הוספת כמות">+</button></div>
       <button class="btn" type="button" id="buy">הוספה לסל</button>
       <a class="btn btn--wa" href="https://wa.me/${SITE.WA}?text=${encodeURIComponent('שלום, יש לי שאלה על '+p.name)}" target="_blank" rel="noopener">${ICONS.wa}שאלה בוואטסאפ</a>
     </div>
-    <dl class="specs">${specs.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>
+    <p class="buybox__note">ההזמנה נשלחת ליהודה לאישור מלאי ומחיר. התשלום והאיסוף בחנות או במשלוח בתיאום.</p>
     <p class="tip">${tip}</p>
-  </div>`;
+  </div>
+  <dl class="specs">${specs.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
 let n=1;const qv=document.getElementById('q');
 document.getElementById('inc').onclick=()=>{if(n<999)qv.textContent=++n};
 document.getElementById('dec').onclick=()=>{if(n>1)qv.textContent=--n};
 document.getElementById('buy').onclick=()=>{addToCart(p.id,n);openCart()};
-document.querySelectorAll('.gal__thumbs button').forEach(b=>b.onclick=()=>{
-  document.querySelectorAll('.gal__thumbs button').forEach(x=>x.setAttribute('aria-pressed',x===b));
-  document.getElementById('main-img').innerHTML=b.dataset.v==='photo'?`<img src="assets/img/products/${p.photo}.jpg" alt="תמונת ${p.name}">`:drawProduct(p);
-});
 document.getElementById('rel').innerHTML=PRODUCTS.filter(x=>x.cat===p.cat&&x.id!==p.id).slice(0,4).map(cardHTML).join('');
 observeReveal();
 /* structured data: the brand only where it is known (Mean Well, 3M, Duracell), not "LED Center" on everything */

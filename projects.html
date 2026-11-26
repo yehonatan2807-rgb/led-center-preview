@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
 <title>רעיונות לתאורת לד | לד סנטר</title>
 <meta name="description" content="רעיונות לתאורת לד במטבח, במדרגות, בקירות ובחזיתות, רוצים משהו כזה? לד סנטר בירושלים יתכננו איתכם.">
 <link rel="canonical" href="https://www.ledcenter.co.il/projects.html">
@@ -44,7 +45,7 @@ const IDEAS=[
   {img:'KYJHufdN2Nk',t:'גופים לינאריים תלויים',d:'קווי אור תלויים מעל שולחן, אי במטבח או עמדת קבלה.'},
   {img:'FmemkJ1k0JE',pos:'40% 45%',t:'חזיתות וקווי גג',d:'קו אור לאורך הגג והקורות שמדגיש את קווי המבנה בלילה.'}
 ];
-document.getElementById('ideas').innerHTML=IDEAS.map((x,i)=>`<article class="idea">
+document.getElementById('ideas').innerHTML=IDEAS.map((x,i)=>`<article class="idea" id="idea-${i+1}">
   <div class="idea__img rv"><img src="assets/img/stock/${x.img}.jpg" alt="${x.t}" loading="lazy"${x.pos?` style="object-position:${x.pos}"`:''}></div>
   <div class="rv"><i>${String(i+1).padStart(2,'0')}</i><h2>${x.t}</h2><p class="lead">${x.d}</p>
   <a class="btn btn--line btn--sm" href="https://wa.me/${SITE.WA}?text=${encodeURIComponent('שלום, ראיתי באתר את הרעיון "'+x.t+'" ואשמח לשמוע איך עושים את זה אצלי')}" target="_blank" rel="noopener">רוצים משהו כזה? כתבו לנו</a></div>

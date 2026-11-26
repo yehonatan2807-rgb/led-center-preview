@@ -42,7 +42,7 @@ window.PRODUCTS = [
 
 /* ---------- product drawings: one studio style for the whole catalogue ---------- */
 (function(){
-  const BG='#e6e5e2', L='#2b3036', AL='#c9cfd5', ALD='#9aa3ac', DIF='#f6f7f8';
+  const BG='#f2f2f0', L='#2b3036', AL='#c9cfd5', ALD='#9aa3ac', DIF='#f6f7f8';
   const glowC={warm:'#ffc56b',neutral:'#ffe2a8',cool:'#e8f1ff'};
   const chip={warm:'#ffd88a',neutral:'#fff0c4',cool:'#f4f8ff'};
   let n=0;
@@ -126,3 +126,21 @@ window.REVIEWS=[
 ];
 window.STARS='<span class="stars" role="img" aria-label="דירוג 5 מתוך 5">'+'<svg viewBox="0 0 20 20"><path d="M10 1.5l2.6 5.6 6 .7-4.5 4.1 1.2 6L10 15l-5.3 2.9 1.2-6L1.4 7.8l6-.7z"/></svg>'.repeat(5)+'</span>';
 window.reviewHTML=r=>`<figure class="review rv">${STARS}<p>${r.t}</p><footer><span>${r.n}</span><span>ביקורת בגוגל</span></footer></figure>`;
+/* clients (home and about). To show a logo, put the file in assets/img/clients/ and set logo:'name.png'. */
+window.CLIENTS=[
+  {n:'ארכה',logo:'erco.png'},{n:'בלורן',logo:'bluran.png'},{n:'מגדל המוזיאון'},{n:'קונלוג',logo:'conlog.svg',fx:'invert'},
+  {n:'חשמל ישיר',logo:'yashir.png'},{n:'Great Shape',logo:'great-shape.png'},{n:'Global'},{n:'מעבדות רפא',logo:'rafa.jpg'},
+  {n:'משף',logo:'mashaf.png'},{n:'שיא רהיט'},{n:'New Deli',logo:'newdeli.png'},{n:"IWO'S",logo:'iwos.png'}
+];
+/* the drifting clients row: the list twice, so the loop has no seam; the copy is hidden from screen readers */
+window.clientsRow=el=>{
+  const tile=(c,hide)=>`<div class="cl"${hide?' aria-hidden="true"':' role="listitem"'}>${c.logo?`<img class="${c.fx||''}" src="assets/img/clients/${c.logo}" alt="${hide?'':c.n}" loading="lazy" decoding="async">`:`<b class="${/[a-z]/i.test(c.n)?'lat':''}"><bdi>${c.n}</bdi></b><i></i>`}</div>`;
+  el.innerHTML=`<div class="mrow" role="list" aria-label="רשימת לקוחות">${CLIENTS.map(c=>tile(c)).join('')}${CLIENTS.map(c=>tile(c,1)).join('')}</div>`;
+};
+/* the drifting reviews row (home and about): the reviews three times over, so the loop has no seam;
+   the two copies are hidden from screen readers */
+window.reviewsRow=el=>{
+  const card=(r,hide)=>`<figure class="rcard"${hide?' aria-hidden="true"':''}>${STARS}<blockquote><p>${r.t}</p></blockquote><figcaption><span class="rcard__av" aria-hidden="true">${r.n.trim().charAt(0)}</span><span class="rcard__n">${r.n}</span><span class="rcard__g">ביקורת בגוגל</span></figcaption></figure>`;
+  const set=hide=>REVIEWS.map(r=>card(r,hide)).join('');
+  el.innerHTML=`<div class="rrow">${set(false)}${set(true)}${set(true)}</div>`;
+};
