@@ -48,18 +48,10 @@ document.body.insertAdjacentHTML('afterbegin',`
 
 const hoursDl=`<dl class="hours" data-hours>${HOURS.map(([d,h],i)=>`<dt data-day="${i}">${d}</dt><dd data-day="${i}">${h}</dd>`).join('')}</dl>`;
 window.HOURS_HTML=hoursDl;
+/* the footer is written into every page by tools/build-pages.mjs, so its links, address and hours are readable
+   without JavaScript; only the year is set here */
+document.querySelectorAll('[data-year]').forEach(e=>e.textContent=new Date().getFullYear());
 document.body.insertAdjacentHTML('beforeend',`
-<footer class="foot"><div class="wrap">
-  <div class="foot__grid">
-    <div class="foot__brand"><a class="logo" href="./" style="color:var(--on-dark)">${logo}<span class="logo__he" style="color:var(--on-dark-muted)">לד סנטר בע״מ</span><span class="sr">, לדף הבית</span></a>
-      <p>ייצור, ייבוא ושיווק תאורת לד. ייעוץ, תכנון ותיקונים בחנות בתלפיות, ירושלים.</p>
-      <div class="socials"><a href="https://www.facebook.com/yLedCenter/" aria-label="פייסבוק">${ic.fb}</a><a href="https://www.instagram.com/yehuda_shilo/" aria-label="אינסטגרם">${ic.ig}</a></div></div>
-    <div><h2>האתר</h2><ul>${nav.map(([h,t])=>`<li><a href="${h}">${t}</a></li>`).join('')}</ul></div>
-    <div><h2>יצירת קשר</h2><ul><li><a href="tel:+972722500885">משרד 072-2500885</a></li><li><a href="tel:+972547543820">נייד 054-7543820</a></li><li><a href="https://wa.me/${WA}">וואטסאפ</a></li><li><a href="${MAPS}">רחוב רבקה 19, תלפיות<br>(בתוך ביג אמפוריו)</a></li></ul></div>
-    <div><h2>שעות פתיחה</h2>${hoursDl}</div>
-  </div>
-  <div class="foot__row"><span>© ${new Date().getFullYear()} לד סנטר בע״מ · המחירים באתר כוללים מע״מ · צילומי השראה: Unsplash</span><nav aria-label="משפטי"><a href="accessibility">הצהרת נגישות</a><a href="terms">תקנון ופרטיות</a></nav></div>
-</div></footer>
 <div class="scrim" data-cart-close></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="drawer-h" inert>
   <div class="drawer__head"><h2 id="drawer-h">סל ההזמנה</h2><button class="icon-btn" type="button" data-cart-close aria-label="סגירת הסל">${ic.x}</button></div>

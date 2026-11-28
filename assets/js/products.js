@@ -145,13 +145,14 @@ window.productMeta=p=>{
   if(p.brand) ld.brand={"@type":"Brand","name":p.brand};
   if(p.price!=null){
     ld.offers={"@type":"Offer","priceCurrency":"ILS","price":gross(p.price).toFixed(2),"availability":"https://schema.org/InStoreOnly","itemCondition":"https://schema.org/NewCondition","url":url,"seller":{"@type":"Organization","name":"לד סנטר"}};
-    if(unitOf(p)==='למטר') ld.offers.priceSpecification={"@type":"UnitPriceSpecification","price":gross(p.price).toFixed(2),"priceCurrency":"ILS","valueAddedTaxIncluded":true,"referenceQuantity":{"@type":"QuantitativeValue","value":1,"unitCode":"MTR"}};
+    ld.offers.priceSpecification={"@type":"UnitPriceSpecification","price":gross(p.price).toFixed(2),"priceCurrency":"ILS","valueAddedTaxIncluded":true};
+    if(unitOf(p)==='למטר') ld.offers.priceSpecification.referenceQuantity={"@type":"QuantitativeValue","value":1,"unitCode":"MTR"};
   }
   const crumbs={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
     {"@type":"ListItem","position":1,"name":"דף הבית","item":SITE_URL},
     {"@type":"ListItem","position":2,"name":CATS[p.cat].name,"item":SITE_URL+CAT_PAGES[p.cat]},
     {"@type":"ListItem","position":3,"name":p.name,"item":url}]};
-  return {title:p.name+' | לד סנטר',desc,url,ld,crumbs};
+  return {title:p.name+' | לד סנטר, ירושלים',desc,url,ld,crumbs};
 };
 window.pdHeadHTML=p=>`<p class="eyebrow">${CATS[p.cat].name}${p.tag?` · ${p.tag}`:''}</p><h1>${p.name}</h1><p class="lead">${p.spec}.</p>`;
 window.pdBodyHTML=(p,wa,waIcon)=>{
@@ -175,7 +176,22 @@ window.pdBodyHTML=(p,wa,waIcon)=>{
   </div>
   <dl class="specs">${specs.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
 };
-window.relatedHTML=p=>PRODUCTS.filter(x=>x.cat===p.cat&&x.id!==productHome(p).id).slice(0,4).map(cardHTML).join('');
+/* products that go together: a strip with a driver and profiles, a profile with strips (and the clip for a recessed one),
+   an accessory with what it serves */
+const PAIRS={
+  driver:['strip-14-4','strip-9-6','strip-19-2','strip-28-samsung'],
+  'clip-steel':['profile-7-rec','profile-11-rec','profile-15-rec','driver'],
+  'tape-3m':['strip-9-6','strip-14-4','profile-7','profile-15'],
+  'hanging-set':['profile-3939','profile-6070','profile-3010','driver'],
+  bulb:['driver','tape-3m','hanging-set','clip-steel']
+};
+window.relatedHTML=p=>{
+  const home=productHome(p);
+  const ids=PAIRS[home.id]||(home.cat==='strip'?['driver','profile-7','profile-15',...PRODUCTS.filter(x=>x.cat==='strip').map(x=>x.id)]
+    :home.cat==='profile'?['strip-14-4-180','strip-9-6',/-rec$/.test(home.id)?'clip-steel':'driver','driver',...PRODUCTS.filter(x=>x.cat==='profile').map(x=>x.id)]
+    :PRODUCTS.filter(x=>x.cat==='acc').map(x=>x.id));
+  return [...new Set(ids)].filter(id=>id!==home.id).map(id=>PRODUCTS.find(x=>x.id===id)).filter(Boolean).slice(0,4).map(cardHTML).join('');
+};
 
 /* real Google reviews (5.0 from 7 reviews) */
 window.REVIEWS=[
