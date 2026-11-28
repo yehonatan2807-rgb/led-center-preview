@@ -7,10 +7,10 @@
 <title>חנות | פסי לד, פרופילי אלומיניום ושנאים | לד סנטר</title>
 <meta name="description" content="מחירון פסי לד, פרופילי אלומיניום ושנאים של לד סנטר. מוסיפים לסל ושולחים הזמנה בוואטסאפ. איסוף מהחנות בתלפיות, ירושלים.">
 <meta property="og:title" content="החנות של לד סנטר">
-<link rel="canonical" href="https://www.ledcenter.co.il/shop.html">
+<link rel="canonical" href="https://www.ledcenter.co.il/shop">
 <link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="assets/brand/apple-touch-icon.png"><meta name="theme-color" content="#eef0f2">
 <meta property="og:type" content="website"><meta property="og:image" content="https://yehonatan2807-rgb.github.io/led-center-preview/share.jpg"><meta property="og:locale" content="he_IL"><meta name="twitter:card" content="summary_large_image">
-<meta property="og:site_name" content="לד סנטר"><meta property="og:description" content="מחירון פסי לד, פרופילי אלומיניום ושנאים של לד סנטר. מוסיפים לסל ושולחים הזמנה בוואטסאפ. איסוף מהחנות בתלפיות, ירושלים."><meta property="og:url" content="https://www.ledcenter.co.il/shop.html">
+<meta property="og:site_name" content="לד סנטר"><meta property="og:description" content="מחירון פסי לד, פרופילי אלומיניום ושנאים של לד סנטר. מוסיפים לסל ושולחים הזמנה בוואטסאפ. איסוף מהחנות בתלפיות, ירושלים."><meta property="og:url" content="https://www.ledcenter.co.il/shop">
 <link rel="preload" href="assets/fonts/heebo-hebrew.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/heebo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/css/site.css">
 <style>
@@ -28,6 +28,21 @@
 .perk span{font-size:0.90625rem;color:var(--muted)}
 .empty{padding:60px 0;text-align:center;color:var(--muted)}
 #grid:empty:not([data-ready]){min-height:100vh}
+/* category pages (written by tools/build-pages.mjs from this page): category links, a short guide and questions */
+a.chip{display:inline-flex;align-items:center}
+a.chip[aria-current="page"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.catinfo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,80px);margin-top:clamp(56px,6vw,88px);padding-top:clamp(40px,4vw,56px);border-top:1px solid var(--line)}
+.catinfo h2{font-size:clamp(1.375rem,2vw,1.75rem);margin-bottom:14px}
+.catinfo p,.catinfo li{color:var(--ink-2);line-height:1.75}
+.catinfo p+p{margin-top:12px}
+.catinfo ul,.catinfo ol{margin:12px 0;padding-inline-start:20px}
+.catinfo li+li{margin-top:6px}
+.catinfo a{text-decoration:underline}
+/* the questions stay open: short answers, readable at a glance and by screen readers */
+.faq__q{border-bottom:1px solid var(--line);padding:14px 0}
+.faq__q h3{font-size:1rem;font-weight:600}
+.faq__q p{margin-top:6px}
+@media (max-width:1023px){.catinfo{grid-template-columns:1fr}}
 @media (max-width:1023px){.perks{grid-template-columns:1fr 1fr}.search .input{width:100%}.search{flex:1}.bar__r{width:100%}}
 @media (max-width:639px){.bar{position:static}.catdesc{flex-direction:column;gap:4px}}
 </style>
@@ -36,7 +51,7 @@
 <main id="main">
   <header class="pagehead">
     <div class="wrap">
-      <nav class="crumbs" aria-label="פירורי לחם"><a href="index.html">דף הבית</a><span>/</span><span>חנות</span></nav>
+      <nav class="crumbs" aria-label="פירורי לחם"><a href="./">דף הבית</a><span>/</span><span>חנות</span></nav>
       <h1>החנות</h1>
       <p class="lead">בוחרים מוצרים, מוסיפים לסל ושולחים לנו את ההזמנה בוואטסאפ. נחזור אליך לאישור מלאי, תשלום ואיסוף מהחנות בתלפיות.</p>
     </div>
@@ -57,13 +72,13 @@
     </div>
     <div class="catdesc"><h2 id="cat-title">כל המוצרים</h2><p id="cat-desc"><span id="count"></span></p></div>
     <div class="pgrid" id="grid"></div>
-    <p class="empty" id="empty" hidden>לא נמצאו מוצרים. נסו מילה אחרת, או <a class="link" href="contact.html">שאלו אותנו</a>.</p>
+    <p class="empty" id="empty" hidden>לא נמצאו מוצרים. נסו מילה אחרת, או <a class="link" href="contact">שאלו אותנו</a>.</p>
 
     <div class="perks cells">
       <div class="perk"><b>מחירים שקופים</b><span>כל המחירים באתר כוללים מע״מ</span></div>
       <div class="perk"><b>איסוף מהחנות</b><span>רחוב רבקה 19, תלפיות</span></div>
       <div class="perk"><b>הצעת מחיר לפרויקט</b><span>לקבלנים, חשמלאים ואדריכלים</span></div>
-      <div class="perk"><b>לא בטוחים איזה שנאי?</b><span><a class="link" href="calculator.html">למחשבון השנאי</a></span></div>
+      <div class="perk"><b>לא בטוחים איזה שנאי?</b><span><a class="link" href="calculator">למחשבון השנאי</a></span></div>
     </div>
   </section>
   <div style="height:clamp(80px,9vw,140px)"></div>
@@ -72,7 +87,8 @@
 <script src="assets/js/site.js"></script>
 <script>
 const grid=document.getElementById('grid'),q=document.getElementById('q'),sort=document.getElementById('sort');
-let cat=new URLSearchParams(location.search).get('cat')||'all';
+/* a category page (written by the build script) carries its category; the shop page reads ?cat= */
+let cat=document.body.dataset.cat||new URLSearchParams(location.search).get('cat')||'all';
 if(cat!=='all'&&!CATS[cat]) cat='all'; // an unknown ?cat= shows everything instead of breaking the page
 /* search ignores case and extra spaces, and every word must appear somewhere ("28w samsung", "שקוע פרופיל") */
 const norm=t=>t.toLowerCase().replace(/[״"׳']/g,'').replace(/\s+/g,' ').trim();
@@ -86,10 +102,10 @@ function render(){
   document.getElementById('empty').hidden=!!list.length;
   document.getElementById('cat-title').textContent=cat==='all'?'כל המוצרים':CATS[cat].name;
   document.getElementById('cat-desc').textContent=(cat==='all'?'':CATS[cat].desc+' ')+list.length+' פריטים';
-  document.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.cat===cat));
+  document.querySelectorAll('button.chip').forEach(c=>c.setAttribute('aria-pressed',c.dataset.cat===cat));
   observeReveal();
 }
-document.querySelectorAll('.chip').forEach(c=>c.addEventListener('click',()=>{cat=c.dataset.cat;history.replaceState(null,'',cat==='all'?'shop.html':'shop.html?cat='+cat);render()}));
+document.querySelectorAll('button.chip').forEach(c=>c.addEventListener('click',()=>{cat=c.dataset.cat;history.replaceState(null,'',cat==='all'?'shop':'shop?cat='+cat);render()}));
 q.addEventListener('input',render);sort.addEventListener('change',render);
 render();
 </script>

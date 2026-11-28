@@ -117,6 +117,65 @@ window.findProduct=function(id){
 
 /* consumer price: Israeli law requires showing the total including VAT */
 window.gross=n=>Math.round(n*118)/100;
+window.fmt=n=>(Math.round(n*100)/100).toLocaleString('he-IL',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})+' ₪';
+/* how each price is counted: strips and profiles by the metre, accessories by the unit (as on the store's old site) */
+window.unitOf=p=>p.unit||(p.cat==='acc'?'ליחידה':'למטר');
+
+/* addresses, as the live host serves them (no ".html"): one page per product and per category.
+   The pages themselves are written by tools/build-pages.mjs from this catalogue. */
+window.SITE_URL='https://www.ledcenter.co.il/';
+window.CAT_PAGES={strip:'led-strips',profile:'aluminum-profiles',acc:'drivers-accessories'};
+window.productPath=p=>PRODUCTS.some(x=>x.id===p.id)?'product-'+p.id:'product?id='+encodeURIComponent(p.id);
+/* the page a product belongs to: drivers sized by the calculator ("driver-150") share the driver's page */
+window.productHome=p=>PRODUCTS.find(x=>x.id===p.id)||PRODUCTS.find(x=>x.id===p.id.replace(/-\d+$/,''))||p;
+
+/* product card, shared by home, shop, category and product pages: text only, no picture */
+window.cardHTML=p=>`<article class="pcard rv" data-cat="${p.cat}">
+  <div class="pcard__top"><span class="pcard__cat">${CATS[p.cat].name}</span>${p.tag?`<span class="pcard__tag">${p.tag}</span>`:''}</div>
+  <a class="pcard__name" href="${productPath(p)}">${p.name}</a><p class="pcard__spec">${p.spec}</p>
+  <div class="pcard__row">${p.price!=null?`<span class="price"><b class="num">${fmt(gross(p.price))}</b><small>${unitOf(p)}, כולל מע״מ</small></span>`:`<span class="price price--ask"><b>מחיר לפי דגם</b><small>נשלח הצעה</small></span>`}
+  <button class="add" type="button" data-add="${p.id}" aria-label="הוספה לסל: ${p.name}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>הוספה לסל</button></div></article>`;
+
+/* the product page, written the same way in the browser and by the build script */
+window.productMeta=p=>{
+  const home=productHome(p),url=SITE_URL+productPath(home);
+  const desc=p.name+': '+p.spec+'. '+(p.price!=null?'מחיר '+fmt(gross(p.price))+' '+unitOf(p)+', כולל מע״מ. ':'')+'הזמנה בוואטסאפ ואיסוף מתלפיות, ירושלים.';
+  /* structured data: the brand only where it is known (Mean Well, 3M, Duracell), not "LED Center" on everything */
+  const ld={"@context":"https://schema.org","@type":"Product","name":p.name,"description":p.spec,"url":url,"sku":home.id,"image":SITE_URL+"assets/img/products/"+p.photo+".jpg"};
+  if(p.brand) ld.brand={"@type":"Brand","name":p.brand};
+  if(p.price!=null){
+    ld.offers={"@type":"Offer","priceCurrency":"ILS","price":gross(p.price).toFixed(2),"availability":"https://schema.org/InStoreOnly","itemCondition":"https://schema.org/NewCondition","url":url,"seller":{"@type":"Organization","name":"לד סנטר"}};
+    if(unitOf(p)==='למטר') ld.offers.priceSpecification={"@type":"UnitPriceSpecification","price":gross(p.price).toFixed(2),"priceCurrency":"ILS","valueAddedTaxIncluded":true,"referenceQuantity":{"@type":"QuantitativeValue","value":1,"unitCode":"MTR"}};
+  }
+  const crumbs={"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[
+    {"@type":"ListItem","position":1,"name":"דף הבית","item":SITE_URL},
+    {"@type":"ListItem","position":2,"name":CATS[p.cat].name,"item":SITE_URL+CAT_PAGES[p.cat]},
+    {"@type":"ListItem","position":3,"name":p.name,"item":url}]};
+  return {title:p.name+' | לד סנטר',desc,url,ld,crumbs};
+};
+window.pdHeadHTML=p=>`<p class="eyebrow">${CATS[p.cat].name}${p.tag?` · ${p.tag}`:''}</p><h1>${p.name}</h1><p class="lead">${p.spec}.</p>`;
+window.pdBodyHTML=(p,wa,waIcon)=>{
+  const specs=[['קטגוריה',CATS[p.cat].name]];
+  if(p.brand) specs.push(['יצרן',p.brand]);
+  if(p.w) specs.push(['הספק',p.w+' וואט למטר']);
+  if(p.cat==='profile') specs.push(['חומר','אלומיניום'],['כיסוי','פוליקרבונט, כקליפס']);
+  if(p.use) specs.push(['מתאים ל',p.use.join(', ')]);
+  specs.push(['מחיר',p.price!=null?fmt(gross(p.price))+' '+unitOf(p)+', כולל מע״מ':'לפי דגם, נשלח הצעה'],['זמינות','איסוף מהחנות בתלפיות, בתיאום']);
+  const tip=p.cat==='strip'?'כל פס צריך שנאי בהספק ובמתח מתאימים. <a href="calculator">המחשבון</a> יחשב בשבילך כמה וואט צריך.':p.cat==='profile'?'הפרופיל מגיע עם כיסוי פוליקרבונט. לפרופיל שקוע כדאי להוסיף <a href="product-clip-steel">קליפס נירוסטה</a>.':'לא בטוחים איזה דגם מתאים? <a href="contact">שאלו אותנו</a> ונחזור אליכם.';
+  return `
+  <div class="buybox">
+    ${p.price!=null?`<div class="price"><b class="num">${fmt(gross(p.price))}</b><small>${unitOf(p)}, כולל מע״מ</small></div>`:`<div class="price price--ask"><b style="font-size:1.75rem">מחיר לפי דגם</b><small>נשלח הצעת מחיר בוואטסאפ</small></div>`}
+    <div class="buy">
+      <div class="qty"><button type="button" id="dec" aria-label="הפחתת כמות">−</button><span id="q" aria-live="polite" aria-label="כמות">1</span><button type="button" id="inc" aria-label="הוספת כמות">+</button></div>
+      <button class="btn" type="button" id="buy">הוספה לסל</button>
+      <a class="btn btn--wa" href="https://wa.me/${wa}?text=${encodeURIComponent('שלום, יש לי שאלה על '+p.name)}" target="_blank" rel="noopener">${waIcon}שאלה בוואטסאפ</a>
+    </div>
+    <p class="buybox__note">ההזמנה נשלחת ליהודה לאישור מלאי ומחיר. התשלום והאיסוף בחנות או במשלוח בתיאום.</p>
+    <p class="tip">${tip}</p>
+  </div>
+  <dl class="specs">${specs.map(([k,v])=>`<div><dt>${k}</dt><dd>${v}</dd></div>`).join('')}</dl>`;
+};
+window.relatedHTML=p=>PRODUCTS.filter(x=>x.cat===p.cat&&x.id!==productHome(p).id).slice(0,4).map(cardHTML).join('');
 
 /* real Google reviews (5.0 from 7 reviews) */
 window.REVIEWS=[

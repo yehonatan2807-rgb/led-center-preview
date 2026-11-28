@@ -9,10 +9,10 @@ const WAZE='https://waze.com/ul?q=%D7%A8%D7%91%D7%A7%D7%94%2019%20%D7%99%D7%A8%D
 window.SITE={WA,VAT,HOURS,MAPS,WAZE};
 
 const page=document.body.dataset.page||'';
-const nav=[['shop.html','חנות','shop'],['calculator.html','מחשבון שנאי','calc'],['projects.html','רעיונות','projects'],['guides.html','מדריכים','guides'],['about.html','אודות','about'],['contact.html','צור קשר','contact']];
+const nav=[['shop','חנות','shop'],['calculator','מחשבון שנאי','calc'],['projects','רעיונות','projects'],['guides','מדריכים','guides'],['about','אודות','about'],['contact','צור קשר','contact']];
 const navHtml=nav.map(([h,t,k])=>`<a href="${h}"${k===page?' aria-current="page"':''}>${t}</a>`).join('');
 /* the phone menu: home first, every link numbered, an arrow at its end */
-const sheetNav=[['index.html','דף הבית','home'],...nav].map(([h,t,k],i)=>`<a href="${h}"${k===page?' aria-current="page"':''}><i aria-hidden="true">${String(i+1).padStart(2,'0')}</i><span>${t}</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8H3M6 4.5L2.5 8 6 11.5"/></svg></a>`).join('');
+const sheetNav=[['./','דף הבית','home'],...nav].map(([h,t,k],i)=>`<a href="${h}"${k===page?' aria-current="page"':''}><i aria-hidden="true">${String(i+1).padStart(2,'0')}</i><span>${t}</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M13 8H3M6 4.5L2.5 8 6 11.5"/></svg></a>`).join('');
 const ic={
   bag:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 7h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>',
   menu:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>',
@@ -28,7 +28,7 @@ const logo=`<svg class="logo__svg" viewBox="0 0 686.87 95.14" aria-hidden="true"
 document.body.insertAdjacentHTML('afterbegin',`
 <a class="skip" href="#main">דלגו לתוכן</a>
 <header class="hdr"><div class="wrap hdr__bar">
-  <a class="logo" href="index.html">${logo}<span class="sr">לד סנטר, לדף הבית</span></a>
+  <a class="logo" href="./">${logo}<span class="sr">לד סנטר, לדף הבית</span></a>
   <nav class="nav" aria-label="ראשי">${navHtml}</nav>
   <div class="hdr__act">
     <a class="hdr__tel" href="tel:+972722500885">072-2500885</a>
@@ -51,14 +51,14 @@ window.HOURS_HTML=hoursDl;
 document.body.insertAdjacentHTML('beforeend',`
 <footer class="foot"><div class="wrap">
   <div class="foot__grid">
-    <div class="foot__brand"><a class="logo" href="index.html" style="color:var(--on-dark)">${logo}<span class="logo__he" style="color:var(--on-dark-muted)">לד סנטר בע״מ</span><span class="sr">, לדף הבית</span></a>
+    <div class="foot__brand"><a class="logo" href="./" style="color:var(--on-dark)">${logo}<span class="logo__he" style="color:var(--on-dark-muted)">לד סנטר בע״מ</span><span class="sr">, לדף הבית</span></a>
       <p>ייצור, ייבוא ושיווק תאורת לד. ייעוץ, תכנון ותיקונים בחנות בתלפיות, ירושלים.</p>
       <div class="socials"><a href="https://www.facebook.com/yLedCenter/" aria-label="פייסבוק">${ic.fb}</a><a href="https://www.instagram.com/yehuda_shilo/" aria-label="אינסטגרם">${ic.ig}</a></div></div>
     <div><h2>האתר</h2><ul>${nav.map(([h,t])=>`<li><a href="${h}">${t}</a></li>`).join('')}</ul></div>
     <div><h2>יצירת קשר</h2><ul><li><a href="tel:+972722500885">משרד 072-2500885</a></li><li><a href="tel:+972547543820">נייד 054-7543820</a></li><li><a href="https://wa.me/${WA}">וואטסאפ</a></li><li><a href="${MAPS}">רחוב רבקה 19, תלפיות<br>(בתוך ביג אמפוריו)</a></li></ul></div>
     <div><h2>שעות פתיחה</h2>${hoursDl}</div>
   </div>
-  <div class="foot__row"><span>© ${new Date().getFullYear()} לד סנטר בע״מ · המחירים באתר כוללים מע״מ · צילומי השראה: Unsplash</span><nav aria-label="משפטי"><a href="accessibility.html">הצהרת נגישות</a><a href="terms.html">תקנון ופרטיות</a></nav></div>
+  <div class="foot__row"><span>© ${new Date().getFullYear()} לד סנטר בע״מ · המחירים באתר כוללים מע״מ · צילומי השראה: Unsplash</span><nav aria-label="משפטי"><a href="accessibility">הצהרת נגישות</a><a href="terms">תקנון ופרטיות</a></nav></div>
 </div></footer>
 <div class="scrim" data-cart-close></div>
 <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="drawer-h" inert>
@@ -83,7 +83,7 @@ document.body.insertAdjacentHTML('beforeend',`
     <button type="button" data-mode="font" aria-pressed="false">גופן קריא</button>
     <button type="button" data-reset>איפוס</button>
   </div>
-  <a href="accessibility.html">להצהרת הנגישות</a>
+  <a href="accessibility">להצהרת הנגישות</a>
 </div>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>`);
@@ -120,8 +120,7 @@ const toast=document.getElementById('toast');let tt;
 window.say=m=>{toast.textContent=m;toast.classList.add('is-on');clearTimeout(tt);tt=setTimeout(()=>toast.classList.remove('is-on'),1900)};
 
 /* cart, kept for this visitor in localStorage */
-const fmt=n=>(Math.round(n*100)/100).toLocaleString('he-IL',{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2})+' ₪';
-window.fmt=fmt;
+const fmt=window.fmt; /* defined with the catalogue in products.js */
 const P=id=>window.findProduct?findProduct(id):undefined;
 /* the saved cart is checked on load: only products that still exist, with whole quantities from 1 to 999 */
 let cart={};try{const raw=JSON.parse(localStorage.getItem('lc-cart')||'{}');for(const id in raw){const q=Math.floor(+raw[id]);if(P(id)&&q>0)cart[id]=Math.min(q,999)}}catch(e){}
@@ -135,11 +134,11 @@ function renderCart(){
   let sub=0,ask=false;
   const list=document.getElementById('cart-lines');
   list.innerHTML=ids.length?ids.map(id=>{const p=P(id),q=cart[id];if(p.price!=null)sub+=gross(p.price)*q;else ask=true;
-    return `<li class="dl"><div><b>${p.name}</b><small>${p.price!=null?fmt(gross(p.price))+' ליחידה':'מחיר לפי דגם'}</small></div><div class="qty"><button type="button" data-dec="${id}" aria-label="הפחתת כמות: ${p.name}">−</button><span aria-label="כמות ${q}">${q}</span><button type="button" data-inc="${id}" aria-label="הוספת כמות: ${p.name}">+</button></div></li>`}).join('')
-    :'<li class="drawer__empty">הסל ריק.<br><a class="link" href="shop.html">לחנות</a></li>';
+    return `<li class="dl"><div><b>${p.name}</b><small>${p.price!=null?fmt(gross(p.price))+' '+unitOf(p):'מחיר לפי דגם'}</small></div><div class="qty"><button type="button" data-dec="${id}" aria-label="הפחתת כמות: ${p.name}">−</button><span aria-label="כמות ${q}">${q}</span><button type="button" data-inc="${id}" aria-label="הוספת כמות: ${p.name}">+</button></div></li>`}).join('')
+    :'<li class="drawer__empty">הסל ריק.<br><a class="link" href="shop">לחנות</a></li>';
   sub=Math.round(sub*100)/100;
   document.getElementById('cart-tot').textContent=fmt(sub)+(ask?' +':'');
-  const msg='שלום לד סנטר, אשמח להזמין:\n'+ids.map(id=>{const p=P(id);return `• ${p.name} × ${cart[id]}`+(p.price!=null?` (${fmt(Math.round(gross(p.price)*cart[id]*100)/100)})`:'')}).join('\n')+`\nסה"כ כולל מע"מ: ${fmt(sub)}${ask?' + פריטים לפי הצעה':''}`;
+  const msg='שלום לד סנטר, אשמח להזמין:\n'+ids.map(id=>{const p=P(id);return `• ${p.name} × ${cart[id]}${unitOf(p)==='למטר'?' מטר':''}`+(p.price!=null?` (${fmt(Math.round(gross(p.price)*cart[id]*100)/100)})`:'')}).join('\n')+`\nסה"כ כולל מע"מ: ${fmt(sub)}${ask?' + פריטים לפי הצעה':''}`;
   document.getElementById('cart-send').href=`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
 }
 const calm=()=>matchMedia('(prefers-reduced-motion: reduce)').matches||document.documentElement.classList.contains('a11y-still');
@@ -180,12 +179,7 @@ const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){cons
 window.observeReveal=()=>document.querySelectorAll('.rv:not(.in)').forEach((el,i)=>{el.style.transitionDelay=(i%4)*60+'ms';io.observe(el)});
 observeReveal();
 
-/* product card markup, shared by home, shop and product pages: text only, no picture */
-window.cardHTML=p=>`<article class="pcard rv" data-cat="${p.cat}">
-  <div class="pcard__top"><span class="pcard__cat">${CATS[p.cat].name}</span>${p.tag?`<span class="pcard__tag">${p.tag}</span>`:''}</div>
-  <a class="pcard__name" href="product.html?id=${p.id}">${p.name}</a><p class="pcard__spec">${p.spec}</p>
-  <div class="pcard__row">${p.price!=null?`<span class="price"><b class="num">${fmt(gross(p.price))}</b><small>כולל מע״מ</small></span>`:`<span class="price price--ask"><b>מחיר לפי דגם</b><small>נשלח הצעה</small></span>`}
-  <button class="add" type="button" data-add="${p.id}" aria-label="הוספה לסל: ${p.name}"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M8 3v10M3 8h10"/></svg>הוספה לסל</button></div></article>`;
+/* the product card (cardHTML) lives with the catalogue in products.js, so the build script writes the same markup */
 })();
 
 /* scroll progress: [data-sp="pin"] gets --p from 0 to 1 while its first child is stuck (sticky),
