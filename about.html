@@ -17,8 +17,8 @@
 .ab-hero .duo__media img{object-position:50% 38%}
 .ab-crumbs{position:absolute;z-index:3;top:clamp(14px,1.8vw,24px);right:max(var(--gut),calc((100% - var(--max)) / 2 + var(--gut)));margin:0}
 .ab-hero__act{display:flex;flex-wrap:wrap;gap:10px;margin-top:clamp(22px,2.4vw,30px)}
-/* the opening fills the first screen, so the facts below start at the fold, clear of the floating buttons */
-@media (min-width:1024px){.ab-hero{min-height:clamp(520px,calc(100svh - var(--hdr) - 1px),1000px)}}
+/* a moderate opening: the facts strip still shows on the first screen, above the floating buttons */
+@media (min-width:1024px){.ab-hero{min-height:clamp(480px,64vh,640px)}}
 
 /* the company in four short facts, under the opening */
 .ab-facts{border-bottom:1px solid var(--line)}
@@ -35,9 +35,9 @@
 .big{font-size:clamp(1.75rem,2.9vw,2.75rem);font-weight:700;letter-spacing:-.03em;line-height:1.18;margin-top:16px}
 .big em{font-style:normal;font-weight:300;color:var(--muted)}
 .story .lead{margin-top:22px}
-.quote{position:relative;margin:0;padding-inline-start:24px;font-family:"Frank Ruhl Libre",Georgia,serif;font-size:clamp(1.3125rem,1.8vw,1.625rem);line-height:1.45;color:var(--ink-2)}
+.quote{position:relative;margin:0;padding-inline-start:24px;font-size:clamp(1.25rem,1.7vw,1.5rem);font-weight:300;line-height:1.55;color:var(--ink-2)}
 .quote::before{content:"";position:absolute;inset-block:.3em;inset-inline-start:0;width:3px;border-radius:2px;background:linear-gradient(180deg,#ffcf86,#eba64a);box-shadow:var(--led-glow)}
-.quote footer{font-family:var(--font);font-size:0.875rem;color:var(--muted);margin-top:12px}
+.quote footer{font-size:0.875rem;font-weight:400;color:var(--muted);margin-top:12px}
 .story__do{margin-top:clamp(34px,3.6vw,50px)}
 .story .pts{margin:16px 0 0}
 .story .pts li{grid-template-columns:2.25rem 5rem 1fr}
@@ -58,10 +58,6 @@
   /* the crumbs sit on the photograph's dark top */
   .ab-crumbs{color:rgba(255,255,255,.88);text-shadow:0 1px 8px rgba(0,0,0,.55)}
   .ab-crumbs a:hover{color:#fff}
-  /* the photo grows to fill the first screen, and the text stays attached to its lower edge */
-  .ab-hero{min-height:calc(100svh - var(--hdr) - 1px);display:flex;flex-direction:column}
-  .ab-hero .duo__media{flex:1 0 auto;aspect-ratio:auto;min-height:80vw}
-  .ab-hero .duo__media img{position:absolute;inset:0}
   /* the label moves to the other top corner, and the photo shows a little more of its dark top, so the label stays off the light line */
   .ab-hero .duo__media img{object-position:50% 28%}
   .ab-hero .duo__tag{inset-inline-start:auto;inset-inline-end:clamp(14px,2vw,24px)}

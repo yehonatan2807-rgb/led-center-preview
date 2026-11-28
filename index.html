@@ -30,7 +30,7 @@
 .slide{position:absolute;inset:0;margin:0;opacity:0;visibility:hidden;transition:opacity 1.2s var(--slow),visibility 0s 1.2s}
 .slide.is-out{opacity:1;visibility:visible;z-index:1;transition:none}
 .slide.is-on{opacity:1;visibility:visible;z-index:2;transition:opacity 1.2s var(--slow),visibility 0s}
-.slide img{width:100%;height:100%;object-fit:cover}
+.slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 /* a slow push-in on the photograph being shown; it holds still while the show is paused or the photo fades out */
 .slide.is-on img,.slide.is-out img{animation:kb 9s linear both}
 .slide.is-out img,.show.is-paused .slide img{animation-play-state:paused}
